@@ -9,7 +9,7 @@ function App() {
       
       <h1>Gradebook</h1>
       <LeftTabsColumn></LeftTabsColumn>
-        <LeftTab></LeftTab>
+       
       </div>
    // </div>
   );

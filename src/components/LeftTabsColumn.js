@@ -5,7 +5,16 @@ import '../App.css';
 
 function LeftTabsColumn() {
   return (
-    <div>
+    <div 
+      style={{
+           //display:'block',
+      width:'100px',
+      height:'300px',
+      float:'left'
+        
+     
+            
+      }}>
        <LeftTab>
       </LeftTab>
       <LeftTab>
