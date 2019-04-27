@@ -1,12 +1,16 @@
 import React from 'react';
 import './App.css';
+import LeftTab from './components/LeftTab';
 
 function App() {
   return (
     <div className="App">
+      
       <h1>Gradebook</h1>
       
-    </div>
+        <LeftTab></LeftTab>
+      </div>
+   // </div>
   );
 }
 
