@@ -38,12 +38,19 @@
 }
 
 .LeftTab {
-    width: 80%;
+    width: 150px;
+    float: left;
+    
     
     border: 1px solid black;
-   transform: rotate(270deg); 
-    margin: 22px;
+    /*Do not remove commented out properties please*/
+   /*transform: rotate(270deg); */
+    /*margin: 25px;*/
+    
     display: block;
+    height: 100px;
+    line-height: 20px;
+    text-align: center
     
 }
 

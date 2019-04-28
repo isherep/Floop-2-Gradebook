@@ -10,7 +10,7 @@ class LeftTabsColumn extends Component {
         
         return (
             <div className = 'LeftTabsColumn'>
-                <h3>Tabs</h3>
+                
                 <LeftTab left = {this.props.LeftTab} />
             </div>
         )
