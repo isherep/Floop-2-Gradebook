@@ -1,37 +1,57 @@
-import React from 'react';
+import React, {Component} from 'react';
 import LeftTab from './LeftTab';
 import '../App.css';
 
+class LeftTabsColumn extends Component {
 
-function LeftTabsColumn() {
-  return (
-    <div 
-      style={{
-           //display:'block',
-      width:'100px',
-      height:'300px',
-      float:'left'
+    
+    state = {
         
-     
+        lefttab: [
+            {
+                id:1,
+                title:'Submissions',
+                completed: false
+            },
             
-      }}>
-       <LeftTab>
-        <h3>Submissions</h3>
-      </LeftTab>
-      <LeftTab>
-        <h1>Grade</h1>
-      </LeftTab>
-      <LeftTab>
-        <h3>Number of FeedBack Received</h3>
-      </LeftTab>
-      <LeftTab>
-        <h3>% of FeedBack Read</h3>
-      </LeftTab>
-      <LeftTab>
-        <h3>% of Feedback responded to</h3>
-      </LeftTab>
-    </div>
-  );
+            {
+                id:2,
+                title:'Grade',
+                completed: false 
+            },
+            
+            {
+                id:3,
+                title:'Number of FeedBack Received',
+                completed: false 
+            },
+            
+            {
+                id:4,
+                title: '% of FeedBack Read',
+                completed: false
+            },
+            {
+                id:5,
+                title: '% of Feedback responded to',
+                completed: false 
+            },
+        ]
+        
+    }
+        
+    
+  
+    render() {  
+        console.log()
+        return (
+            <div>
+            <LeftTab />
+              <p>{}</p>
+            </div>
+            
+          )  
+    }
 }
-
+    
 export default LeftTabsColumn;

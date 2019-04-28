@@ -32,6 +32,11 @@
   }
 }
 
+.LeftTabsColumn{
+    width: 20%;
+    margin-left: 5%;
+}
+
 .LeftTab {
     width: 80%;
     

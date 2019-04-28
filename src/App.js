@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import LeftTab from './components/LeftTab';
+
 import LeftTabsColumn from './components/LeftTabsColumn';
 
 function App() {
@@ -8,8 +8,9 @@ function App() {
     <div className="App">
       
       <h1>Gradebook</h1>
-      <LeftTabsColumn></LeftTabsColumn>
-       
+      
+      <LeftTabsColumn /> 
+      
       </div>
    // </div>
   );
