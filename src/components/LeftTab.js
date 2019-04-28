@@ -41,7 +41,7 @@ class LeftTab extends Component{
   render() {
     console.log(this.state.lefttab)
     return this.state.lefttab.map((lefttab) =>(
-      <h3>
+      <h3 key = {lefttab.id}>
         {lefttab.title}
       </h3>
     ));    

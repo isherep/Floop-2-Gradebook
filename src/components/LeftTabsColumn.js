@@ -4,54 +4,17 @@ import '../App.css';
 
 class LeftTabsColumn extends Component {
 
-    
-    state = {
+   
+    render() {
         
-        lefttab: [
-            {
-                id:1,
-                title:'Submissions',
-                completed: false
-            },
-            
-            {
-                id:2,
-                title:'Grade',
-                completed: false 
-            },
-            
-            {
-                id:3,
-                title:'Number of FeedBack Received',
-                completed: false 
-            },
-            
-            {
-                id:4,
-                title: '% of FeedBack Read',
-                completed: false
-            },
-            {
-                id:5,
-                title: '% of Feedback responded to',
-                completed: false 
-            },
-        ]
         
-    }
-        
-    
-  
-    render() {  
-        console.log()
         return (
-            <div>
-            <LeftTab />
-              <p>{}</p>
+            <div className = 'LeftTabsColumn'>
+                <h3>Tabs</h3>
+                <LeftTab left = {this.props.LeftTab} />
             </div>
-            
-          )  
-    }
+        )
+      }
 }
     
 export default LeftTabsColumn;
