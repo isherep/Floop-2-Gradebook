@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import LeftTab from './LeftTab';
-import '../App.css';
 
 class LeftTabsColumn extends Component {
 
