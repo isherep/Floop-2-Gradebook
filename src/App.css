@@ -67,3 +67,12 @@
   width: 10%;
   padding: 5px;
 }
+
+.Grade {
+  margin-left: 430px;
+  border: 1px solid black;
+  height: 20px;
+  line-height: 20px;
+  width: 10%;
+  padding: 5px;
+}
