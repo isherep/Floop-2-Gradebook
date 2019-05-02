@@ -1,109 +1,105 @@
 import React, {Component} from 'react';
+import '../App.css';
 
-
-class Grid extends Component {
+class AssignGrade2 extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            students: [
+            grades2: [
                 {
-                    id:1,
-                    name:'Bob',
+                    id: 35,
+                    grade:'40',
                     completed: false
                 },
                 {
-                    id:2,
-                    name:'Maria',
+                    id:36,
+                    grade:'25',
                     completed: false 
                 },
                 {
-                    id:3,
-                    name:'Kevin',
+                    id:37,
+                    grade:'34',
                     completed: false 
                 },
                 {
-                    id:4,
-                    name: 'Jose',
+                    id:38,
+                    grade:'15',
                     completed: false
                 },
 
                 {
-                    id:5,
-                    name:'Bob',
+                    id:39,
+                    grade:'40',
                     completed: false
                 },
                 {
-                    id:6,
-                    name:'Maria',
+                    id:40,
+                    grade:'25',
                     completed: false 
                 },
                 {
-                    id:7,
-                    name:'Kevin',
+                    id:41,
+                    grade:'34',
                     completed: false 
                 },
                 {
                     id:8,
-                    name: 'Jose',
+                    grade:'15',
                     completed: false
                 },
 
                 {
                     id:9,
-                    name:'Bob',
+                    grade:'40',
                     completed: false
                 },
                 {
                     id:10,
-                    name:'Maria',
+                    grade:'25',
                     completed: false 
                 },
                 {
                     id:11,
-                    name:'Kevin',
+                    grade:'34',
                     completed: false 
                 },
                 {
                     id:12,
-                    name: 'Jose',
+                    grade:'15',
                     completed: false
                 },
 
                 {
                     id:13,
-                    name:'Bob',
+                    grade:'40',
                     completed: false
                 },
                 {
                     id:14,
-                    name:'Maria',
+                    grade:'25',
                     completed: false 
                 },
                 {
                     id:15,
-                    name:'Kevin',
+                    grade:'34',
                     completed: false 
                 },
-                {
-                    id:16,
-                    name: 'Jose',
-                    completed: false
-                },
+                
             ]
         };
       }
 
-    render() {
+      render() {
         
-            return this.state.students.map((students) =>(
-                <div className = 'Grid'>
-                <h3 key = {students.id}>
-                  {students.name}
-                  </h3> 
-                </div>
-        ));
+        return this.state.grades2.map((grades2) =>(
+          <div className = "Grade2">
+          <h3 key = {grades2.id}>
+            {grades2.grade}
+            </h3> 
+          </div>
+        ));    
       }
 }
     
-export default Grid;
+export default AssignGrade2;

@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
+import '../App.css';
 
-
-class AssignGrade extends Component {
+class AssignGrade1 extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            grades: [
+            grades1: [
                 {
                     id:1,
                     grade:'40',
@@ -92,14 +92,14 @@ class AssignGrade extends Component {
 
       render() {
         
-        return this.state.grades.map((grades) =>(
-          <div className = 'Grade'>
-          <h3 key = {grades.id}>
-            {grades.grade}
+        return this.state.grades1.map((grades1) =>(
+          <div className = 'Grade1'>
+          <h3 key = {grades1.id}>
+            {grades1.grade}
             </h3> 
           </div>
         ));    
       }
 }
     
-export default AssignGrade;
+export default AssignGrade1;
