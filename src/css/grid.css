@@ -1,0 +1,28 @@
+.gradeItems {
+   display: grid;
+   grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+   grid-gap: 0em;
+   margin-left: 250px;
+   width: 0 auto;
+}
+
+ul.gradeItems {
+    background: #ddd;
+}
+
+ul.gradeItems:nth-child(odd) {
+    background: #bbb;
+}
+
+li {
+    border: 1px solid black;
+    list-style-type: none;
+    padding: .75em;
+}
+
+
+
+
+
+
+

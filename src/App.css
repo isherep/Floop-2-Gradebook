@@ -58,12 +58,3 @@
     text-align: center
 
 }
-
-.Grid {
-  margin-left: 300px;
-  border: 1px solid black;
-  height: 20px;
-  line-height: 20px;
-  width: 10%;
-  padding: 5px;
-}
