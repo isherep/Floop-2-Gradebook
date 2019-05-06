@@ -1,36 +1,36 @@
 import React, {Component} from 'react';
 import '../css/grid.css';
 
-class GridDetail extends Component {
+class GradeDetail extends Component {
     render() {
         return (
             <ul className="gradeItems">
                 <li>
-                    {this.props.grid.id}
+                    {this.props.grade.id}
                 </li>
                 <li>
-                    {this.props.grid.name}
+                    {this.props.grade.name}
                 </li>
                 <li>
-                    {this.props.grid.a1}
+                    {this.props.grade.a1}
                 </li>
                 <li>
-                    {this.props.grid.a2}
+                    {this.props.grade.a2}
                 </li>
                 <li>
-                    {this.props.grid.a3}
+                    {this.props.grade.a3}
                 </li>
                 <li>
-                    {this.props.grid.a4}
+                    {this.props.grade.a4}
                 </li>
                 <li>
-                    {this.props.grid.a5}
+                    {this.props.grade.a5}
                 </li>
                 <li>
-                    {this.props.grid.a6}
+                    {this.props.grade.a6}
                 </li>
             </ul>
         )
             }
 }
-export default GridDetail;
+export default GradeDetail;

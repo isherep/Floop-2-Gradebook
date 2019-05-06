@@ -1,0 +1,13 @@
+button {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 0em;
+    width: 100px;
+    border: 1px solid black;
+    text-align: center;
+    padding: 30px ;
+    background: lightyellow;
+ }
+
+
+

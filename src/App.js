@@ -1,16 +1,17 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import LeftTabsColumn from './components/LeftTabsColumn';
-import Grid from './components/grid';
+import NavTab from './components/navTab';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Gradebook</h1>
-      <LeftTabsColumn /> 
-      <Grid/>
+class App extends Component {
+
+  render() {
+    return (
+      <div className="App">
+        <h1>Gradebook</h1>
+        <NavTab/> 
       </div>
-  );
+    );
+  }
 }
 
 export default App;

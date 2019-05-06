@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "title": "Submissions"
+    }, 
+    {
+        "id":2,
+        "title": "Grade"
+    },
+    {
+        "id":3,
+        "title": "FeedBack"
+    },
+    {
+        "id": 4,
+        "title": "% FeedBack Read"
+    },
+    {
+        "id":5,
+        "title": "% Responded"
+    }
+]
