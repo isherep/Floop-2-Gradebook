@@ -30,9 +30,8 @@ function getStudents() {
       querySnapshot.forEach((doc) => {
         students.push(doc.data());
       });
-    }).then(getNumStudents())
+    })
 }
-
 
 
 getStudents()
@@ -40,6 +39,7 @@ getStudents()
 
 
 
-// doesn't export the length I want, instead it exports 0
+
+
 export default students;
 
