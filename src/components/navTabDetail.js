@@ -13,7 +13,7 @@ class NavTabDetail extends Component {
             <div>
                 {this.state.visible ? <Grades/> : null}
             <button onClick={() => {
-                this.setState({visible: true})}}>
+                this.setState({visible: true})}}> 
                 <div className="navItems">
                     {this.props.nav.title}
                 </div>
