@@ -7,13 +7,38 @@ import jsonData from './mock-data/grades.json'
 import students from './Data/database'
 import studentsTest from './Data/studentMod'
 //import studentsTest from './Data/studentMod'
+import database from './Data/database'
+import * as firebase from 'firebase'
 
 class App extends Component {
 
-  constructor(props) {
+  constructor(props){
     super(props);
+    this.state = {
+      
+  };
   }
+   async componentDidMount(){
+    const rootRef = firebase.database().ref().child('react')
+    const studentRef = rootRef.child('student')
+    //console.log("Child ref", studentRef)
 
+    // Basic usage of .once() to read the data located at ref.
+        //studentRef.once('value')
+        studentRef.on('child_added'), function(snapshot) {
+              console.log(snapshot.val())
+      
+        }
+   }
+   
+        //his.fetchData();
+        //const stud = students
+        //this.setState({
+          //students: snap.val()
+        //});
+  
+   // });
+  
 
   render() {
     const columns = [
@@ -67,6 +92,8 @@ class App extends Component {
         accessor: "a8"
       }
     ]
+    
+    
     return (
       /*<div className="App">
         <h1>Gradebook</h1>
