@@ -14,17 +14,6 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    /*this.state = {
-      "id":"irynas@gmail.com",
-      "name":"Bob",
-      "a1": 10,
-      "a2": 10,
-      "a3": 18,
-      "a4": 10,
-      "a5": 5,
-      "a6": 10
-  };*/
-
   this.state = {students}
   }
  
@@ -43,6 +32,8 @@ class App extends Component {
   });
 }
   render() {
+
+    
     const columns = [
       {
         Header: "Student ID",
@@ -101,12 +92,12 @@ class App extends Component {
         <h1>Gradebook</h1>
         /*<NavTab/>
       </div>*/
-
+      
       <ReactTable
       
         columns={columns}
-        //data={this.state.students}
-        data={studentsTest}
+        data={this.state.students}
+       // data={studentsTest}    - works, builds rows
         >
 
       </ReactTable>
