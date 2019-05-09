@@ -29,7 +29,7 @@ function getStudents() {
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         students.push({
-          id:   2,
+          id:   doc.data().Email,
           name: doc.data().First_Name,
           //dummy grades dat
         a1: 10,
@@ -43,6 +43,8 @@ function getStudents() {
         });
     });
 })
+
+//db.collection('Databases').doc('Dev_Database').collection('Submissions').where()
 
 }
 
