@@ -11,8 +11,8 @@ import * as firebase from 'firebase'
 
 class App extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     /*this.state = {
       "id":"irynas@gmail.com",
@@ -105,7 +105,8 @@ class App extends Component {
       <ReactTable
       
         columns={columns}
-        data={studentsTest}
+        data={this.state.students}
+        //data={studentsTest}
         >
 
       </ReactTable>
