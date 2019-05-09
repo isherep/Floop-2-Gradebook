@@ -29,6 +29,9 @@ class GradeDetail extends Component {
                 <li>
                     {this.props.grade.a6}
                 </li>
+                <li>
+                    {this.props.grade.a7}
+                </li>
             </ul>
         )
             }

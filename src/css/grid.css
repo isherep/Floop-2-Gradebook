@@ -3,6 +3,20 @@
    grid-template-columns: 1fr 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
    grid-gap: 0em;
    width: 0 auto;
+   overflow: auto;
+   white-space: nowrap;
+}
+
+.gradeItems a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+
+.gradeItems a:hover {
+  background-color:#777;
 }
 
 ul.gradeItems {
@@ -18,10 +32,3 @@ li {
     list-style-type: none;
     padding: .75em;
 }
-
-
-
-
-
-
-
