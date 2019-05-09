@@ -105,8 +105,8 @@ class App extends Component {
       <ReactTable
       
         columns={columns}
-        data={this.state.students}
-        //data={studentsTest}
+        //data={this.state.students}
+        data={studentsTest}
         >
 
       </ReactTable>
