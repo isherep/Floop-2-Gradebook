@@ -4,6 +4,9 @@ import './App.css';
 import NavTab from './components/navTab';
 import "react-table/react-table.css";
 import jsonData from './mock-data/grades.json'
+import students from './Data/database'
+import studentsTest from './Data/studentMod'
+//import studentsTest from './Data/studentMod'
 
 class App extends Component {
 
@@ -72,7 +75,7 @@ class App extends Component {
 
       <ReactTable
         columns={columns}
-        data={jsonData}
+        data={students}
 
       >
 
@@ -80,5 +83,7 @@ class App extends Component {
     );
   }
 }
+
+console.log(students)
 
 export default App;
