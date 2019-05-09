@@ -4,14 +4,44 @@ import './App.css';
 import NavTab from './components/navTab';
 import "react-table/react-table.css";
 import jsonData from './mock-data/grades.json'
+import students from './Data/database'
+import studentsTest from './mock-data/studentsTest.json'
+import database from './Data/database'
+import * as firebase from 'firebase'
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+
+    /*this.state = {
+      "id":"irynas@gmail.com",
+      "name":"Bob",
+      "a1": 10,
+      "a2": 10,
+      "a3": 18,
+      "a4": 10,
+      "a5": 5,
+      "a6": 10
+  };*/
+
+  this.state = {students}
   }
+ 
+  
+  componentDidMount(){
+    const rootRef = firebase.database().ref().child('react')
+    const studentRef = rootRef.child('students')
+    console.log(studentRef)
+    studentRef.on('value', snap => {
 
+        
+      this.setState({
+        students: students
+      });
 
+  });
+}
   render() {
     const columns = [
       {
@@ -64,6 +94,8 @@ class App extends Component {
         accessor: "a8"
       }
     ]
+    
+    
     return (
       /*<div className="App">
         <h1>Gradebook</h1>
@@ -71,14 +103,16 @@ class App extends Component {
       </div>*/
 
       <ReactTable
+      
         columns={columns}
-        data={jsonData}
-
-      >
+        data={studentsTest}
+        >
 
       </ReactTable>
     );
   }
 }
+
+console.log(students)
 
 export default App;
