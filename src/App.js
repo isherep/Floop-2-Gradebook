@@ -4,7 +4,7 @@ import './App.css';
 import NavTab from './components/navTab';
 import "react-table/react-table.css";
 import jsonData from './mock-data/grades.json'
-import students from './Data/database'
+import { students, getStudentsAsynchronously, getStudentsAsynchronouslyWithPromise} from './Data/database'
 import studentsTest from './mock-data/studentsTest.json'
 import database from './Data/database'
 import * as firebase from 'firebase'
@@ -14,22 +14,49 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-  this.state = {students}
+    this.state = {
+      students: [],
+      studentsAsync: [],
+      studentsPromise: [],
+  
+    }
   }
  
   
   componentDidMount(){
     const rootRef = firebase.database().ref().child('react')
     const studentRef = rootRef.child('students')
-    console.log(studentRef)
+    //console.log(studentRef)
     studentRef.on('value', snap => {
 
-        
       this.setState({
         students: students
       });
 
   });
+  // import our functions from database.js and log them again.
+  getStudentsAsynchronously().then(response => console.log('With Async/Await Again: ', response));
+
+  getStudentsAsynchronouslyWithPromise().then(response => console.log('With Promise Again: ', response));
+
+  // now that we know they are imported and working as expected, lets set new state properties as examples...
+
+  getStudentsAsynchronously().then(response => this.setState({
+    studentsAsync: response,
+  }));
+
+  getStudentsAsynchronouslyWithPromise().then( (response) => {
+    this.setState({
+    studentsPromise: response,
+    });
+    console.log('App.js State Two: ', this.state);
+  });
+
+  // log the whole state object to see which ones actually made it to our state. None!
+  // It's because this piece of code runs before our promises resolve!
+  console.log('App.js State One: ', this.state);
+
+
 }
   render() {
 
@@ -96,7 +123,7 @@ class App extends Component {
       <ReactTable
       
         columns={columns}
-        data={this.state.students}
+        data={this.state.studentsAsync} // build the table with studentsSync
        // data={studentsTest}    - works, builds rows
         >
 
@@ -105,6 +132,6 @@ class App extends Component {
   }
 }
 
-console.log(students)
+console.log(students);
 
 export default App;
