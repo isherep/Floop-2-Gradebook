@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
 import './App.css';
-import NavTab from './components/navTab';
+import NavTab from './navTab';
 
 class App extends Component {
-
   render() {
-    return (
+    return(
       <div className="App">
         <h1>Gradebook</h1>
-        <NavTab/> 
+        <NavTab/>
       </div>
     );
   }
 }
-
+  
 export default App;

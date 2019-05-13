@@ -1,0 +1,99 @@
+.tabList {
+    list-style-type: none;
+    float: left;
+    width: 150px;
+}
+
+.tabs {
+    padding: 10px;
+    margin: 0;
+}
+
+.subTab {
+    border-top: 1px solid black;
+    border-left:  1px solid black;
+    border-bottom: 1px solid black;
+    border-right: none;
+    border-radius: 3% 0 0 3%;
+    padding: 30px 20px;
+}
+
+.subTab:hover {
+    background: #eee;
+} 
+
+.subTab:active {     
+    background: red ;    
+}
+
+.subTab:focus {     
+    background: pink;    
+}
+
+.gradesTab {
+    border-top: 1px solid black;
+    border-left:  1px solid black;
+    border-bottom: 1px solid black;
+    border-right: none;
+    border-radius: 3% 0 0 3%;
+    padding: 30px 20px;
+}
+
+.gradesTab:hover {
+    background: #eee;
+} 
+
+.gradesTab:focus {     
+    background: red;    
+}
+
+.feedbackTab {
+    border-top: 1px solid black;
+    border-left:  1px solid black;
+    border-bottom: 1px solid black;
+    border-right: none;
+    border-radius: 3% 0 0 3%;
+    padding: 30px 20px;
+}
+
+.feedbackTab:hover {
+    background: #eee;
+} 
+
+.feedbackTab:focus {     
+    background: red;    
+}
+
+.readTab {
+    border-top: 1px solid black;
+    border-left:  1px solid black;
+    border-bottom: 1px solid black;
+    border-right: none;
+    border-radius: 3% 0 0 3%;
+    padding: 25px 20px;
+}
+
+.readTab:hover {
+    background: #eee;
+} 
+
+.readTab:focus {     
+    background: red;    
+}
+
+.respondedTab {
+    border-top: 1px solid black;
+    border-left:  1px solid black;
+    border-bottom: 1px solid black;
+    border-right: none;
+    border-radius: 3% 0 0 3%;
+    padding: 25px 20px;
+}
+
+.respondedTab:hover {
+    background: #eee;
+} 
+
+.respondedTab:focus {     
+    background: red;    
+}
