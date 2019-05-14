@@ -76,7 +76,7 @@ const getStudentsAsynchronouslyWithPromise = function() {
         // through every student Document that is returned, build a custom object for each one, and push it to our array
         studentQuerySnapshot.forEach(function(studentDocument){
           studentsArrayInPromise.push({
-            id: studentDocument.data().Email,
+            id: studentDocument.id,
             name: studentDocument.data().First_Name,
             a1: 10,
             a2: 10,
@@ -134,17 +134,37 @@ const getStudentsAsynchronously = async () => {
   // assignment and then move on.
   const studentQuerySnapshot = await studentQuery.get();
 
+  //pullig all submissions
+  //const submissionQueryAss1 = db.collection('Databases').doc('Dev_Database')
+  //.collection('Submissions').where('Assignment_ID', '==' ,'3F7F2ACA-C4F4-4239-88B7-D72AF6EC545C');
+
+  //const ownerAssign = submissionQueryAss1;
   // declare the array that will store our custom objects
   const studentsArrayInAsync = [];
   const submissions = getSubmissions;
 
   // same as the function above, build our custom objects from the value that the .get() method resolves
   studentQuerySnapshot.forEach((studentDocument) => {
+<<<<<<< Updated upstream
     
     studentsArrayInAsync.push({
       id: studentDocument.id,
       name: studentDocument.data().First_Name,
       a1: submissions.grade,
+=======
+    //searching for the submission with the curret student id
+    
+
+    
+    const submissionQueryAss1 = db.collection('Databases').doc('Dev_Database')
+    .collection('Submissions').where('Assignment_ID', '==' ,'3F7F2ACA-C4F4-4239-88B7-D72AF6EC545C');
+
+    studentsArrayInAsync.push({
+      
+      id: studentDocument.id,
+      name: studentDocument.data().First_Name,
+      a1: submissionQueryAss1, //val().Current_Grade.where('studentDocument.id', '==', 'studentDocument.id'),
+>>>>>>> Stashed changes
       a2: 10,
       a3: 10,
       a4: 10,
