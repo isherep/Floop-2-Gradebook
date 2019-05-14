@@ -89,15 +89,20 @@ const getStudentsAsynchronously = async () => {
 
   const studentQuerySnapshot = await studentQuery.get();
 
+  const Assignment1Query = db.collection('Databases').doc('Dev_Database')
+    .collection('Submissions');
+
+
   // declare the array that will store our custom objects
   const studentsArrayInAsync = [];
+
 
   // same as the function above, build our custom objects from the value that the .get() method resolves
   studentQuerySnapshot.forEach((studentDocument) => {
     studentsArrayInAsync.push({
-      id: studentDocument.data().Email,
+      id: studentDocument.id,
       name: studentDocument.data().First_Name,
-      a1: 10,
+      a1: Assignment1Query,
       a2: 10,
       a3: 10,
       a4: 10,
