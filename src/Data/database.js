@@ -136,13 +136,15 @@ const getStudentsAsynchronously = async () => {
 
   // declare the array that will store our custom objects
   const studentsArrayInAsync = [];
+  const submissions = getSubmissions;
 
   // same as the function above, build our custom objects from the value that the .get() method resolves
   studentQuerySnapshot.forEach((studentDocument) => {
+    
     studentsArrayInAsync.push({
-      id: studentDocument.data().Email,
+      id: studentDocument.id,
       name: studentDocument.data().First_Name,
-      a1: 10,
+      a1: submissions.grade,
       a2: 10,
       a3: 10,
       a4: 10,
@@ -158,8 +160,62 @@ const getStudentsAsynchronously = async () => {
 // Boom! Even though we used Async/Await, we still know that this function is going to return a promise. So for 
 // Demonstration purposes, we need to use a .then() chain in order to log our data arrays properly.
 getStudentsAsynchronously().then(response => console.log('With Async/Await: ', response));
+/* For later use for Assignments titles
+async function getAssignments() {
+  
+  const assignmentsRef = db.collection('Databases').doc('Dev_Database').
+    collection('Assignments');
+  try {
+    const assignments = []
+    let assignmentsSnapshot = await assignmentsRef.get();
+    assignmentsSnapshot.forEach((doc) => {
+      assignments.push({
+        id: doc.id,
+        class: doc.data().Class_ID,
+        title: doc.data().Title,
+        description: doc.data().Description,
+        status: doc.data().Status,
+        date_Created: doc.data().Date_Created,
+        date_Due: doc.data().Date_Due,
+      })
+    })
+    return assignments;
+  }
+  catch(err) {
+    console.log('getAssignments() error: ', err);
+  }
+}
 
+*/
 
+/**
+ * Retrieves all submissions including only graded, isAssesed and owners id info
+ */
+const getSubmissions = async () => { 
+  
+  const submissionsRef = db.collection('Databases').doc('Dev_Database').collection('Submissions');
+
+  const studentQuerySnapshot = await submissionsRef.get();
+  
+  try {
+    const submissions = []
+    let submissionsSnapshot = await submissionsRef.get();
+    submissionsSnapshot.forEach((doc) => {
+      submissions.push({
+        id: doc.id,
+        assignment: doc.data().Assignment_ID,
+        grade: doc.data().Current_Grade, 
+        assesed: doc.data().Assessed, 
+        /*Owners are objects of each student or teacher */  
+        owner: doc.data().Owner_IDs
+      })
+    })
+    return submissions;
+  }
+  catch(err) {
+    console.log('getSubmissions() error: ', err);
+  }
+}
 /*
   This is your original function. This is a good example of how to give yourself a headache. I'm not dogging on you! This
   Stuff is really hard to wrap your head around!
@@ -187,7 +243,7 @@ function getStudents() {
           id:   doc.data().Email,
           name: doc.data().First_Name,
           //dummy grades dat
-        a1: 10,
+        a1: getSubmissions.grade,
         a2: 10,
         a3: 10,
         a4: 10,
@@ -208,4 +264,4 @@ function getStudents() {
 // export default students
 
 
-export { getStudentsAsynchronously, getStudentsAsynchronouslyWithPromise, students, getStudents}
+export { getStudentsAsynchronously, getStudentsAsynchronouslyWithPromise, getSubmissions, students, getStudents}

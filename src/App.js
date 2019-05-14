@@ -4,7 +4,7 @@ import './App.css';
 import NavTab from './components/navTab';
 import "react-table/react-table.css";
 import jsonData from './mock-data/grades.json'
-import { students, getStudentsAsynchronously, getStudentsAsynchronouslyWithPromise} from './Data/database'
+import { students, getStudentsAsynchronously,getSubmissions, getStudentsAsynchronouslyWithPromise} from './Data/database'
 import studentsTest from './mock-data/studentsTest.json'
 import database from './Data/database'
 import * as firebase from 'firebase'
@@ -44,6 +44,14 @@ class App extends Component {
   getStudentsAsynchronously().then(response => this.setState({
     studentsAsync: response,
   }));
+
+  getSubmissions().then(response =>
+    console.log("Submissions ", response)
+  )
+
+  const subs = getSubmissions();
+
+  console.log("Subs", subs);
 
   getStudentsAsynchronouslyWithPromise().then( (response) => {
     this.setState({
@@ -132,6 +140,7 @@ class App extends Component {
   }
 }
 
-console.log(students);
+//console.log(students);
+console.log()
 
 export default App;
