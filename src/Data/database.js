@@ -146,12 +146,15 @@ const getStudentsAsynchronously = async () => {
   // same as the function above, build our custom objects from the value that the .get() method resolves
   studentQuerySnapshot.forEach((studentDocument) => {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     
     studentsArrayInAsync.push({
       id: studentDocument.id,
       name: studentDocument.data().First_Name,
       a1: submissions.grade,
 =======
+=======
+>>>>>>> Stashed changes
     //searching for the submission with the curret student id
     
 
@@ -164,6 +167,9 @@ const getStudentsAsynchronously = async () => {
       id: studentDocument.id,
       name: studentDocument.data().First_Name,
       a1: submissionQueryAss1, //val().Current_Grade.where('studentDocument.id', '==', 'studentDocument.id'),
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       a2: 10,
       a3: 10,
