@@ -7,7 +7,7 @@ import 'react-table-hoc-fixed-columns/lib/styles.css';
 import '../css/database.css';
 import { students, getStudentsAsynchronously, getStudentsAsynchronouslyWithPromise} from '../Data/database';
 import studentsTest from '../mock-data/studentsTest.json';
-import database from '../Data/database';
+//import database from '../Data/database';
 import * as firebase from 'firebase';
 
 class DatabaseLayout extends Component {
@@ -68,7 +68,7 @@ class DatabaseLayout extends Component {
               this.setState({students});
             }}
             dangerouslySetInnerHTML={{
-              __html: this.state.students[cellInfo.index][cellInfo.column.id]
+              __html: this.state.studentsAsync[cellInfo.index][cellInfo.column.id]
             }}
           />
         );
@@ -167,8 +167,8 @@ class DatabaseLayout extends Component {
         return(
           <ReactTableFixedColumns className="databaseStyle"
             columns={columns}
-            data={this.state.students}
-            //data={this.state.studentsAsync}
+           // data={this.state.students}
+            data={this.state.studentsAsync}
             showPagination={false}
             filterable
             defaultPageSize={15}
@@ -178,7 +178,7 @@ class DatabaseLayout extends Component {
                 return (
                   <div>
                     {filteredData()}
-                    <ExportToExcel students={this.ReactTableFixedColumns}/> 
+                    <ExportToExcel studentsAsync={this.ReactTableFixedColumns}/> 
                   </div>
                 )
             }}
