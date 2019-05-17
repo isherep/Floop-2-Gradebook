@@ -1,10 +1,101 @@
-button {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-gap: 0em;
-    width: 120px;
-    border: 1px solid black;
-    text-align: center;
-    padding: 30px ;
-    background: lightyellow;
- }
+.tabList {
+    list-style-type: none;
+    width: 150px;
+    float: left;
+}
+
+.tabs {
+   background: #ccd9ff;
+   padding: 10px;
+}
+
+.subTab {
+    border-top: 1px solid black;
+    border-left:  1px solid black;
+    border-bottom: 1px solid black;
+    border-right: none;
+    border-radius: 3% 0 0 3%;
+    padding: 30px 20px;
+    background: #7094db;
+}
+
+.subTab:hover {
+    background: #ff3333;
+} 
+
+.subTab:focus {     
+    background: #ff3333;    
+}
+
+.gradesTab {
+    border-top: 1px solid black;
+    border-left:  1px solid black;
+    border-bottom: 1px solid black;
+    border-right: none;
+    border-radius: 3% 0 0 3%;
+    padding: 30px 20px;
+    background: #7094db;
+}
+
+.gradesTab:hover {
+    background: #ffa31a;
+} 
+
+.gradesTab:focus {     
+    background: #ffa31a;    
+}
+
+.feedbackTab {
+    border-top: 1px solid black;
+    border-left:  1px solid black;
+    border-bottom: 1px solid black;
+    border-right: none;
+    border-radius: 3% 0 0 3%;
+    padding: 30px 20px;
+    background: #7094db;
+}
+
+.feedbackTab:hover {
+    background: #ffff4d;
+} 
+
+.feedbackTab:focus {     
+    background: #ffff4d;    
+}
+
+.readTab {
+    border-top: 1px solid black;
+    border-left:  1px solid black;
+    border-bottom: 1px solid black;
+    border-right: none;
+    border-radius: 3% 0 0 3%;
+    padding: 25px 20px;
+    background: #7094db;
+}
+
+.readTab:hover {
+    background: #d2ff4d;
+} 
+
+.readTab:focus {     
+    background: #d2ff4d;    
+}
+
+.respondedTab {
+    border-top: 1px solid black;
+    border-left:  1px solid black;
+    border-bottom: 1px solid black;
+    border-right: none;
+    border-radius: 3% 0 0 3%;
+    padding: 25px 20px;
+    background:  #7094db;
+}
+
+.respondedTab:hover {
+    background: #e580ff;
+} 
+
+.respondedTab:focus {     
+    background: #e580ff;    
+}
+
