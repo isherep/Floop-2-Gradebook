@@ -5,8 +5,9 @@ import 'react-table/react-table.css';
 import withFixedColumns from 'react-table-hoc-fixed-columns';
 import 'react-table-hoc-fixed-columns/lib/styles.css';
 import '../css/database.css';
-import { students, getStudentsAsynchronously, getStudentsAsynchronouslyWithPromise} from '../Data/database';
+import {getStudentsAsynchronously,  getSubmissions ,students} from '../Data/database';
 import studentsTest from '../mock-data/studentsTest.json';
+//import {getAssignments} from '../Data/database'
 //import database from '../Data/database';
 import * as firebase from 'firebase';
 
@@ -17,7 +18,8 @@ class DatabaseLayout extends Component {
         this.state = {
             students: [],
             studentsAsync: [],
-            studentsPromise: []
+            studentsPromise: [],
+            submissions:[]
         }
         this.renderEditable = this.renderEditable.bind(this);
     }
@@ -34,8 +36,8 @@ class DatabaseLayout extends Component {
 
     // import our functions from database.js and log them again.
   getStudentsAsynchronously().then(response => console.log('With Async/Await Again: ', response));
-
-  getStudentsAsynchronouslyWithPromise().then(response => console.log('With Promise Again: ', response));
+  
+  getSubmissions().then(response => console.log('Get Submissions ', response));
 
   // now that we know they are imported and working as expected, lets set new state properties as examples...
 
@@ -43,19 +45,13 @@ class DatabaseLayout extends Component {
     studentsAsync: response,
   }));
 
-  getStudentsAsynchronouslyWithPromise().then( (response) => {
-    this.setState({
-    studentsPromise: response,
-    });
-    console.log('App.js State Two: ', this.state);
-  });
-
-  // log the whole state object to see which ones actually made it to our state. None!
-  // It's because this piece of code runs before our promises resolve!
-  console.log('App.js State One: ', this.state);
-
+  getSubmissions().then(response => this.setState({
+    submissions: response,
+  }));
 
 }
+
+
 
     renderEditable(cellInfo) {
         return (
