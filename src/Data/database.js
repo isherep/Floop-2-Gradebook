@@ -85,6 +85,9 @@ const getSubmissions = async () => {
     
     const submissionsSnapshot = await submissionsRef.get();
     const submissions = []
+    const StudentID = submissionsRef.student
+   
+
     submissionsSnapshot.forEach((submissionDoc) => {
       submissions.push({     
         assignID: submissionDoc.id, 
@@ -93,7 +96,7 @@ const getSubmissions = async () => {
         
       })
     })
-    return submissions;
+    return Object.keys(submissions[0].student);
   }
   getSubmissions().then(response => console.log('Assignments Async/Await: ', response));
 
