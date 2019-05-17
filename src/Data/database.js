@@ -51,6 +51,8 @@ var grade2 = await getSubmissionsSecond()
 console.log("Grade 2: ", grade2);
     // same as the function above, build our custom objects from the value that the .get() method resolves
     studentQuerySnapshot.forEach(async(studentDocument) => {
+        
+
       studentsArrayInAsync.push({
         id: studentDocument.id,
         name: studentDocument.data().First_Name,
