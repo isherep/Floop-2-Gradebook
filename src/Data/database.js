@@ -38,28 +38,17 @@ const getStudentsAsynchronously = async () => {
     const Assignment1Query = db.collection('Databases').doc('Dev_Database')
       .collection('Submissions').where('Assignment', '==', '494AA418-ACAB-4BE2-AC81-B442B66F741E');
 
-    const Assignment1QuerySnapshot = await Assignment1Query.get();
+   
     // declare the array that will store our custom objects
     const studentsArrayInAsync = [];
 
-  
-   // let as2Val = assign2.value;
-
-   /*
-    getFeed().then(data => vm.feed = data);
-   
-    If you wish to use the async function, you could also do like that:
-
-    async function myFunction(){
-      vm.feed = await getFeed();
-    // do whatever you need with vm.feed below
- }
-   */
- // var data
-   //var assign2 = getSubmissionsSecond().then(data => assign2 = data.data)
+var grade1 = await getSubmissionsFirst() //.then(function(grade1){
+   // if(grade1 === null){
+   // grade1 = "none"
+ // }
+//}) 
 var grade2 = await getSubmissionsSecond()
 console.log("Grade 2: ", grade2);
-    //console.log("Assignment1Query", Assignment1Query)
     // same as the function above, build our custom objects from the value that the .get() method resolves
     studentQuerySnapshot.forEach(async(studentDocument) => {
       studentsArrayInAsync.push({
@@ -69,7 +58,7 @@ console.log("Grade 2: ", grade2);
         //a1: Assignment1QuerySnapshot,//doc('-LKFrICqw1PghOOTRgLO').Current_Grade,
         grades: [],
         //a1: getAssignments.get("Current_Grade"),
-        a1: 10,
+        a1: grade1,
         a2: grade2,//getSubmissionsSecond().response,
         a3: 10,
         a4: 10,
@@ -80,9 +69,6 @@ console.log("Grade 2: ", grade2);
       });
     });
     
-   
-
-
   return studentsArrayInAsync;
 }
 // Boom! Even though we used Async/Await, we still know that this function is going to return a promise. So for 
@@ -115,9 +101,14 @@ const getSubmissionsFirst = async () => {
         
       })
     })
+
+    if(submissions[0].grade === null){
+      return "none";
+    } else {
     //returns student is successfuly Object.keys(submissions[0].student)
     //return grade successfully: in this case its null
-    return submissions[0].grade;//Object.keys(submissions[0].student);
+    return submissions[0].grade;
+    }//Object.keys(submissions[0].student);
   }
   //getSubmissionsFirst().then(response => console.log('Second Ass Grade is ', response));
 
