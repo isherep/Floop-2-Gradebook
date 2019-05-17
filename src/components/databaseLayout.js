@@ -5,7 +5,7 @@ import 'react-table/react-table.css';
 import withFixedColumns from 'react-table-hoc-fixed-columns';
 import 'react-table-hoc-fixed-columns/lib/styles.css';
 import '../css/database.css';
-import {getStudentsAsynchronously,  getSubmissions ,students} from '../Data/database';
+import {getStudentsAsynchronously,  getSubmissionsFirst ,getSubmissionsSecond, students} from '../Data/database';
 import studentsTest from '../mock-data/studentsTest.json';
 //import {getAssignments} from '../Data/database'
 //import database from '../Data/database';
@@ -37,7 +37,7 @@ class DatabaseLayout extends Component {
     // import our functions from database.js and log them again.
   getStudentsAsynchronously().then(response => console.log('With Async/Await Again: ', response));
   
-  getSubmissions().then(response => console.log('Get Submissions ', response));
+  getSubmissionsFirst().then(response => console.log('Get Submissions ', response));
 
   // now that we know they are imported and working as expected, lets set new state properties as examples...
 
@@ -45,7 +45,11 @@ class DatabaseLayout extends Component {
     studentsAsync: response,
   }));
 
-  getSubmissions().then(response => this.setState({
+  //getSubmissionsFirst().then(response => this.setState({
+    //submissions: response,
+  //}));
+
+  getSubmissionsSecond().then(response => this.setState({
     submissions: response,
   }));
 

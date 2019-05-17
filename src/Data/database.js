@@ -42,9 +42,26 @@ const getStudentsAsynchronously = async () => {
     // declare the array that will store our custom objects
     const studentsArrayInAsync = [];
 
+  
+   // let as2Val = assign2.value;
+
+   /*
+    getFeed().then(data => vm.feed = data);
+   
+    If you wish to use the async function, you could also do like that:
+
+    async function myFunction(){
+      vm.feed = await getFeed();
+    // do whatever you need with vm.feed below
+ }
+   */
+ // var data
+   //var assign2 = getSubmissionsSecond().then(data => assign2 = data.data)
+var grade2 = await getSubmissionsSecond()
+console.log("Grade 2: ", grade2);
     //console.log("Assignment1Query", Assignment1Query)
     // same as the function above, build our custom objects from the value that the .get() method resolves
-    studentQuerySnapshot.forEach((studentDocument) => {
+    studentQuerySnapshot.forEach(async(studentDocument) => {
       studentsArrayInAsync.push({
         id: studentDocument.id,
         name: studentDocument.data().First_Name,
@@ -53,7 +70,7 @@ const getStudentsAsynchronously = async () => {
         grades: [],
         //a1: getAssignments.get("Current_Grade"),
         a1: 10,
-        a2: 10,
+        a2: grade2,//getSubmissionsSecond().response,
         a3: 10,
         a4: 10,
         a5: 10,
@@ -63,6 +80,8 @@ const getStudentsAsynchronously = async () => {
       });
     });
     
+   
+
 
   return studentsArrayInAsync;
 }
@@ -79,7 +98,7 @@ getStudentsAsynchronously().then(response => console.log('Students With Async/Aw
  * Creates an array of grades of assignmentOne
  * We are assuming that '494AA418-ACAB-4BE2-AC81-B442B66F741E' is a Assignment 1
  */
-const getSubmissions = async () => {
+const getSubmissionsFirst = async () => {
 
   const submissionsRef = db.collection('Databases').doc('Dev_Database').collection('Submissions').where('Assignment_ID', '==', '494AA418-ACAB-4BE2-AC81-B442B66F741E');
     
@@ -96,9 +115,39 @@ const getSubmissions = async () => {
         
       })
     })
-    return Object.keys(submissions[0].student);
+    //returns student is successfuly Object.keys(submissions[0].student)
+    //return grade successfully: in this case its null
+    return submissions[0].grade;//Object.keys(submissions[0].student);
   }
-  getSubmissions().then(response => console.log('Assignments Async/Await: ', response));
+  //getSubmissionsFirst().then(response => console.log('Second Ass Grade is ', response));
+
+
+
+/**
+ * Get second assignment grade
+ */
+
+async function getSubmissionsSecond(){
+
+  const submissionsRef2 = db.collection('Databases').doc('Dev_Database').collection('Submissions').where('Assignment_ID', '==', '3F7F2ACA-C4F4-4239-88B7-D72AF6EC545C');
+    
+    const submissionsSnapshot = await submissionsRef2.get();
+    const submissions2 = []
+   
+    submissionsSnapshot.forEach((submissionDoc) => {
+      submissions2.push({     
+        assignID: submissionDoc.id, 
+        grade: submissionDoc.data().Current_Grade,
+        student: submissionDoc.data().Owner_IDs
+        
+      })
+    })
+    //returns student is successfuly Object.keys(submissions[0].student)
+    //return grade successfully: in this case its null
+    return submissions2[0].grade;//Object.keys(submissions[0].student);
+  }
+  getSubmissionsSecond().then(response => console.log('Second Ass Grade is: ', response));
+ // getSubmissionsSecond().then(response => students.a2 = getSubmissionsSecond)
 
 //maping grades to students
 //firebase. firestore. DocumentSnapshot
@@ -106,7 +155,7 @@ const getSubmissions = async () => {
 //submissions.get(Owner_ID) or submissins.OWNER_Ids.get("S")
 const addGradesToStudents = async() => {
     
-  let gradesAssignOne = await getSubmissions();
+  let gradesAssignOne = await getSubmissionsFirst();
   let students = await getStudentsAsynchronously();
   
 
@@ -126,4 +175,4 @@ const addGradesToStudents = async() => {
 addGradesToStudents().then(response => console.log('Filled up grades are : ', response));
 
 
-export { getStudentsAsynchronously,  getSubmissions ,students}
+export { getStudentsAsynchronously,  getSubmissionsFirst , getSubmissionsSecond, students}
