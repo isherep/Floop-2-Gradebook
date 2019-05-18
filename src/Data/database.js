@@ -1,5 +1,6 @@
 import * as firebase from 'firebase';
 import 'firebase/firestore';
+import { withFixedColumnsScrollEvent } from 'react-table-hoc-fixed-columns';
 //import classes from '*.module.sass';
 
 
@@ -35,23 +36,22 @@ const getStudentsAsynchronously = async () => {
   //wait for query to resolve
     const studentQuerySnapshot = await studentQuery.get();
     //assignment 1
-    const Assignment1Query = db.collection('Databases').doc('Dev_Database')
-      .collection('Submissions').where('Assignment', '==', '494AA418-ACAB-4BE2-AC81-B442B66F741E');
-
    
     // declare the array that will store our custom objects
     const studentsArrayInAsync = [];
 
 var grade1 = await getSubmissionsFirst() //.then(function(grade1){
+  //console.log("Grades 1: ", grade1);
    // if(grade1 === null){
    // grade1 = "none"
  // }
 //}) 
-var grade2 = await getSubmissionsSecond()
-console.log("Grade 2: ", grade2);
+
+//console.log("Grade 2: ", grade2);
     // same as the function above, build our custom objects from the value that the .get() method resolves
-    studentQuerySnapshot.forEach(async(studentDocument) => {
-        
+    studentQuerySnapshot.forEach(async (studentDocument) => {
+      //get grade where submission.key === student key
+      var grade2 = await getSubmissionsSecond()
 
       studentsArrayInAsync.push({
         id: studentDocument.id,
@@ -60,14 +60,14 @@ console.log("Grade 2: ", grade2);
         //a1: Assignment1QuerySnapshot,//doc('-LKFrICqw1PghOOTRgLO').Current_Grade,
         grades: [],
         //a1: getAssignments.get("Current_Grade"),
-        a1: grade1,
+        /*a1: grade1,
         a2: grade2,//getSubmissionsSecond().response,
         a3: 10,
         a4: 10,
         a5: 10,
         a6: 10,
         a7: 10,
-        a8: 10,
+        a8: 10,*/
       });
     });
     
@@ -81,14 +81,15 @@ getStudentsAsynchronously().then(response => console.log('Students With Async/Aw
 
 
 
-
+//------------------------------GET FIRST SUBMISSION--------------------------------
 /**
  * Creates an array of grades of assignmentOne
  * We are assuming that '494AA418-ACAB-4BE2-AC81-B442B66F741E' is a Assignment 1
  */
 const getSubmissionsFirst = async () => {
 
-  const submissionsRef = db.collection('Databases').doc('Dev_Database').collection('Submissions').where('Assignment_ID', '==', '494AA418-ACAB-4BE2-AC81-B442B66F741E');
+  const submissionsRef = db.collection('Databases').doc('Dev_Database').collection('Submissions')
+  .where('Assignment_ID', '==', 'B2F820F7-561A-4244-9D55-592C6A5B93F9');
     
     const submissionsSnapshot = await submissionsRef.get();
     const submissions = []
@@ -103,16 +104,19 @@ const getSubmissionsFirst = async () => {
         
       })
     })
-
+/*
     if(submissions[0].grade === null){
       return "none";
     } else {
     //returns student is successfuly Object.keys(submissions[0].student)
     //return grade successfully: in this case its null
-    return submissions[0].grade;
+    return submissions;
     }//Object.keys(submissions[0].student);
-  }
-  //getSubmissionsFirst().then(response => console.log('Second Ass Grade is ', response));
+  }*/
+
+  return submissions
+}
+  getSubmissionsFirst().then(response => console.log('Second Ass Grade is ', response))
 
 
 
@@ -142,30 +146,54 @@ async function getSubmissionsSecond(){
   getSubmissionsSecond().then(response => console.log('Second Ass Grade is: ', response));
  // getSubmissionsSecond().then(response => students.a2 = getSubmissionsSecond)
 
+
+//-------------------------FILLING UP GRADES ARRAY------------------------------
+
 //maping grades to students
 //firebase. firestore. DocumentSnapshot
 //The data can be extracted with .data() or .get(<field>) to get a specific field.
 //submissions.get(Owner_ID) or submissins.OWNER_Ids.get("S")
-const addGradesToStudents = async() => {
+async function addGradesToStudents() {
     
-  let gradesAssignOne = await getSubmissionsFirst();
-  let students = await getStudentsAsynchronously();
+  //let grades1 = await getSubmissionsFirst(assignment);
+  let grades1 = await getSubmissionsFirst();
+  //Object.keys(submissions[0].student);
+  console.log("Grades in add to student ", grades1)
+  const ownerKeysArr = []
   
+  
+  //const students1 = []
+  const students1 = await getStudentsAsynchronously();
+  
+ console.log("Students 11111", students1[0])
+
+ //console.log("Looping over ", students1);
 
     try {
-      for(let grade in gradesAssignOne){
-        let studGrade = gradesAssignOne.find(x=>x.grade.student === students.id)
-        console.log("StudentGrade is ",studGrade)
-        // classOfAssignment.assignments.push(assignment);
-        studGrade.gradesAssignOne.push(studGrade);
+      for (var i = 0; i< grades1.length; i++){
+        ownerKeysArr[i] = Object.keys(grades1[i].student);
       }
+      /*
+      for(var i =0; i< grades1.length; i++){
+      
+        console.log(grades1[i].grade);
+        //console.log(students1[i])
+      }*/
+      
+      for(var j = 0; j< students1.length; j++){
+        students1[j] = await getStudentsAsynchronously()
+        console.log("Student name ", students1[j].name);
+      }
+
+  
     } catch(err){
     console.log('addGradesToStudents() error: ', err);
   }
-  return gradesAssignOne;
+ // return students1;
+ return ownerKeysArr;
 }
 
-addGradesToStudents().then(response => console.log('Filled up grades are : ', response));
+addGradesToStudents().then(response => console.log('Owner keys ', response));
 
 
 export { getStudentsAsynchronously,  getSubmissionsFirst , getSubmissionsSecond, students}
