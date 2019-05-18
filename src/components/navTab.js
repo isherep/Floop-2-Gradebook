@@ -4,10 +4,21 @@ import 'react-tabs/style/react-tabs.css';
 import DatabaseLayout from './databaseLayout.js';
 import '../css/navTab.css';
 
+import DrawerToggleButton from './DrawerToggleButton';
+
 class NavTab extends Component{
+  constructor(props){
+    super(props);
+
+    var v = props;
+  }
+
   render() {
     return (
       <Tabs className="tabs">
+      <div className="toolbar-toggle-button">
+          <DrawerToggleButton click={this.props.drawerClickHandler}/>
+      </div>
         <TabList className="tabList">
             <Tab className="subTab">Submissions</Tab>
             <Tab className="gradesTab">Grades</Tab>
@@ -35,4 +46,3 @@ class NavTab extends Component{
   }
 }
 export default NavTab;
-
