@@ -5,11 +5,12 @@ import 'react-table/react-table.css';
 import withFixedColumns from 'react-table-hoc-fixed-columns';
 import 'react-table-hoc-fixed-columns/lib/styles.css';
 import '../css/database.css';
-import {getStudentsAsynchronously,  getSubmissionsFirst ,getSubmissionsSecond, students} from '../Data/database';
+import {getStudentsAsynchronously,  getSubmissionsFirst ,getSubmissionsSecond, getStudents} from '../Data/database';
 import studentsTest from '../mock-data/studentsTest.json';
 //import {getAssignments} from '../Data/database'
 //import database from '../Data/database';
 import * as firebase from 'firebase';
+
 
 class DatabaseLayout extends Component {
     constructor(props) {
@@ -21,41 +22,27 @@ class DatabaseLayout extends Component {
             studentsPromise: [],
             submissions:[]
         }
-        this.renderEditable = this.renderEditable.bind(this);
+        // this.renderEditable = this.renderEditable.bind(this);
     }
 
     componentDidMount(){
         const rootRef = firebase.database().ref().child('react')
         const studentRef = rootRef.child('students')
-        //console.log(studentRef)
-        studentRef.on('value', snap => {
-          this.setState({
-            students: students
-          });
+        console.log(studentRef)
+        getStudents().then((students) => {
+          const studentArray = []
+          for(var id in students) {
+            studentArray.push(students[id]);
+            console.log("Student: ", students[id]);
+          }
+          // console.log("StudentArray: ", studentArray);
+          // studentRef.on('value', snap => {
+            this.setState({
+              students: studentArray
+            });
+        // })
       });
-
-    // import our functions from database.js and log them again.
-  getStudentsAsynchronously().then(response => console.log('With Async/Await Again: ', response));
-  
-  getSubmissionsFirst().then(response => console.log('Get Submissions ', response));
-
-  // now that we know they are imported and working as expected, lets set new state properties as examples...
-
-  getStudentsAsynchronously().then(response => this.setState({
-    studentsAsync: response,
-  }));
-
-  //getSubmissionsFirst().then(response => this.setState({
-    //submissions: response,
-  //}));
-
-  getSubmissionsSecond().then(response => this.setState({
-    submissions: response,
-  }));
-
 }
-
-
 
     renderEditable(cellInfo) {
         return (
@@ -68,7 +55,7 @@ class DatabaseLayout extends Component {
               this.setState({students});
             }}
             dangerouslySetInnerHTML={{
-              __html: this.state.studentsAsync[cellInfo.index][cellInfo.column.id]
+              __html: cellInfo.value
             }}
           />
         );
@@ -79,6 +66,16 @@ class DatabaseLayout extends Component {
           return student.id === id
         })
         console.log("index", index)
+    }
+
+   getGrade(s, i) {
+      if (i >= s.submissions.length) {
+        return null;
+      } else {
+        console.log("Student ", s.name, s.submissions);
+        console.log("Student ", s.name, " grade ", i, s.submissions[i].grade);
+        return s.submissions[i].grade
+      }
     }
 
     render() {
@@ -97,55 +94,64 @@ class DatabaseLayout extends Component {
             },
             {
                 Header: "Assignment 1",
-                accessor: "a1",
+                id: "ass1",
+                accessor: s => { return this.getGrade(s, 0); },
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 2",
-                accessor: "a2",
+                id: "ass2",
+                accessor: s => this.getGrade(s, 1),
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 3",
-                accessor: "a3",
+                id: "ass3",
+                accessor: s => this.getGrade(s, 2),
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 4",
-                accessor: "a4",
+                id: "ass4",
+                accessor: s => this.getGrade(s, 3),
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 5",
-                accessor: "a5",
+                id: "ass5",
+                accessor: s => this.getGrade(s, 4),
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 6",
-                accessor: "a6",
+                id: "ass6",
+                accessor: s => this.getGrade(s, 5),
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 7",
-                accessor: "a7",
+                id: "ass7",
+                accessor: s => this.getGrade(s, 6),
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 8",
-                accessor: "a8",
+                id: "ass8",
+                accessor: s => this.getGrade(s, 7),
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
-                Header: "Assignment 8",
-                accessor: "a8",
+                Header: "Assignment 9",
+                id: "ass9",
+                accessor: s => this.getGrade(s, 8),
                 Cell: this.renderEditable,
                 minWidth: 150,
             },
@@ -167,11 +173,10 @@ class DatabaseLayout extends Component {
         return(
           <ReactTableFixedColumns className="databaseStyle"
             columns={columns}
-           // data={this.state.students}
-            data={this.state.studentsAsync}
-            showPagination={false}
+            data={this.state.students}
+            showPagination={true}
             filterable
-            defaultPageSize={15}
+            defaultPageSize={25}
             >
             {(state, filteredData, instance) => {
               this.ReactTableFixedColumns = state.pageRows.map(student => {return student._original});
