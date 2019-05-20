@@ -21,10 +21,10 @@
 
 .subTab:hover {
     background: #ff3333;
-} 
+}
 
-.subTab:focus {     
-    background: #ff3333;    
+.subTab:focus {
+    background: #ff3333;
 }
 
 .gradesTab {
@@ -39,10 +39,10 @@
 
 .gradesTab:hover {
     background: #ffa31a;
-} 
+}
 
-.gradesTab:focus {     
-    background: #ffa31a;    
+.gradesTab:focus {
+    background: #ffa31a;
 }
 
 .feedbackTab {
@@ -57,10 +57,10 @@
 
 .feedbackTab:hover {
     background: #ffff4d;
-} 
+}
 
-.feedbackTab:focus {     
-    background: #ffff4d;    
+.feedbackTab:focus {
+    background: #ffff4d;
 }
 
 .readTab {
@@ -75,10 +75,10 @@
 
 .readTab:hover {
     background: #d2ff4d;
-} 
+}
 
-.readTab:focus {     
-    background: #d2ff4d;    
+.readTab:focus {
+    background: #d2ff4d;
 }
 
 .respondedTab {
@@ -93,9 +93,21 @@
 
 .respondedTab:hover {
     background: #e580ff;
-} 
-
-.respondedTab:focus {     
-    background: #e580ff;    
 }
 
+.respondedTab:focus {
+    background: #e580ff;
+}
+
+@media (max-width: 768px){
+  .tabList {
+    display: none;
+  }
+
+}
+
+@media (min-width: 769px){
+  .toolbar-toggle-button {
+    display: none;
+  }
+}
