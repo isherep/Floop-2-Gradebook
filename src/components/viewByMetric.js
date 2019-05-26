@@ -82,6 +82,11 @@ class ViewByMetric extends Component {
         const ReactTableFixedColumns = withFixedColumns(ReactTable);
         const columns = [
             {
+                Header: "Student",
+                accessor: "id",
+                fixed: 'left',
+            },
+            {
                 Header: "Submissions",
                 accessor: "id",
                 fixed: 'left',
