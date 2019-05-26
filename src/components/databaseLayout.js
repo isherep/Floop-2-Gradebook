@@ -174,7 +174,7 @@ class DatabaseLayout extends Component {
           <ReactTableFixedColumns className="databaseStyle"
             columns={columns}
             data={this.state.students}
-            showPagination={true}
+            showPagination={false}
             filterable
             defaultPageSize={25}
             >

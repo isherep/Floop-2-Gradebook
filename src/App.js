@@ -5,9 +5,9 @@ import NavTab from './components/navTab';
 import * as firebase from 'firebase';
 import withFixedColumns from 'react-table-hoc-fixed-columns';
 import { students, getStudentsAsynchronously, getStudentsAsynchronouslyWithPromise} from './Data/database';
-
 import SideDrawer from './components/SideDrawer';
 import BackDrop from './components/BackDrop';
+import Toggle from './components/toggle';
 
 class App extends Component {
 
@@ -36,6 +36,7 @@ class App extends Component {
         return(
           <div className="App">
             <h1>Gradebook</h1>
+            <Toggle/>
             <NavTab drawerClickHandler={this.drawerToggleClickHandler}/>
             <SideDrawer show={this.state.sideDrawerOpen}/>
             {backdrop}
@@ -43,7 +44,4 @@ class App extends Component {
         );
       }
     }
-
-
-
 export default App;
