@@ -12,7 +12,7 @@ import studentsTest from '../mock-data/studentsTest.json';
 import * as firebase from 'firebase';
 
 
-class DatabaseLayout extends Component {
+class ViewByAssignment extends Component {
     constructor(props) {
         super(props);
     
@@ -191,4 +191,4 @@ class DatabaseLayout extends Component {
         );
     }
 }
-export default DatabaseLayout;
+export default ViewByAssignment;

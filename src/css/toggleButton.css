@@ -1,6 +1,7 @@
 .toggler {
-  margin-top: 40px;
+  margin-top: 35px;
   position: absolute;
+  width: 1250px;
 }
 
 .toggleButton {

@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import ReactTable from 'react-table'
-import NavTab from './components/navTab';
 import * as firebase from 'firebase';
-import withFixedColumns from 'react-table-hoc-fixed-columns';
 import { students, getStudentsAsynchronously, getStudentsAsynchronouslyWithPromise} from './Data/database';
 import SideDrawer from './components/SideDrawer';
 import BackDrop from './components/BackDrop';
@@ -33,12 +31,10 @@ class App extends Component {
 
         }
         
-        //this goes under <Toggle/>
-        //<NavTab drawerClickHandler={this.drawerToggleClickHandler}/>
         return(
           <div className="App">
             <h1>Gradebook</h1>
-            <Toggle/>
+            <Toggle drawerClickHandler={this.drawerToggleClickHandler}/>
             <SideDrawer show={this.state.sideDrawerOpen}/>
             {backdrop}
           </div>
