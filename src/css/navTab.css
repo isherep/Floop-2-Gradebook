@@ -19,11 +19,11 @@
     background: #7094db;
 }
 
-.subTab:hover {
+.subTab:focus {
     background: #ff3333;
 }
 
-.subTab:focus {
+.subTab:hover {
     background: #ff3333;
 }
 

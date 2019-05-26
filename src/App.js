@@ -32,12 +32,13 @@ class App extends Component {
           backdrop = <BackDrop click={this.backdropClickHandler}/>
 
         }
-
+        
+        //this goes under <Toggle/>
+        //<NavTab drawerClickHandler={this.drawerToggleClickHandler}/>
         return(
           <div className="App">
             <h1>Gradebook</h1>
             <Toggle/>
-            <NavTab drawerClickHandler={this.drawerToggleClickHandler}/>
             <SideDrawer show={this.state.sideDrawerOpen}/>
             {backdrop}
           </div>
