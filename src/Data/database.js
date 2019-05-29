@@ -34,19 +34,53 @@ const config = {
 
     const assignment = Object()
 
+     //new dictionary to hols assignment data and due date
+    const submissionStatus = Object()
+
     assignmentSnapshot.forEach((assignmentDoc) =>{
       assignment[assignmentDoc.id] = {
         id: assignmentDoc.id,
         dueDate: assignmentDoc.data().Date_Due,
         assignName: assignmentDoc.data().Description,
+        //subs:[]
       }
+
+      submissionStatus[assignmentDoc] = {
+        assignDate: assignment.dueDate,
+        submitedDate: assignment.submissionDate,  
+      }
+
     });
+    
+
+    /*
+    * const ids = Object.keys(submisionDocument.data().Owner_IDs);  
+      ids.forEach((ownerId) => {
+          const student = students[ownerId];
+          student.submissions.push(submission)
+        });
+
+    */
+
+    //new dictionary to hols assignment data and due date
+    /*
+    const submissionStatus = {
+      assignDate: dueDate,
+      submitedDate: submissionDate,
+
+    }
+    */
+    
 
     //console.log("Assignment Snapshot ", assignmentSnapshot)
-    return assignment
+    return submissionStatus
+
+
+
    }
 
    getAssignments().then(response => console.log('Assignments : ', response));
+
 
 /**
  * Building and array of students with their submissios grades
