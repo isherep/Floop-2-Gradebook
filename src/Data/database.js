@@ -37,8 +37,8 @@ const config = {
     assignmentSnapshot.forEach((assignmentDoc) =>{
       assignment[assignmentDoc.id] = {
         id: assignmentDoc.id,
-        dueDate: assignmentDoc.Date_Due,
-        assignName: assignmentDoc.Description,
+        dueDate: assignmentDoc.data().Date_Due,
+        assignName: assignmentDoc.data().Description,
       }
     });
 
