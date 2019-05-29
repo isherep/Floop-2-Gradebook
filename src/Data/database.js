@@ -18,6 +18,35 @@ const config = {
   firebase.initializeApp(config);
 
   let db = firebase.firestore();
+  /**
+   * Building an array of Assignments 
+   */
+
+
+   const getAssignments = async() => {
+      //----------------------------------------------------------
+    // Building assignments object
+
+    const assignmentQuery = db.collection('Databases').doc('Dev_Database')
+    .collection('Assignments').get();   
+
+    const assignmentSnapshot = await assignmentQuery;
+
+    const assignment = Object()
+
+    assignmentSnapshot.forEach((assignmentDoc) =>{
+      assignment[assignmentDoc.id] = {
+        id: assignmentDoc.id,
+        dueDate: assignmentDoc.Date_Due,
+        assignName: assignmentDoc.Description,
+      }
+    });
+
+    //console.log("Assignment Snapshot ", assignmentSnapshot)
+    return assignment
+   }
+
+   getAssignments().then(response => console.log('Assignments : ', response));
 
 /**
  * Building and array of students with their submissios grades
@@ -31,6 +60,8 @@ const getStudents = async () => {
     const submissionsQuery = db.collection('Databases').doc('Dev_Database')
             .collection('Submissions').get();
 
+         
+
     const studentQuerySnapshot = await studentQuery;
     //creating the dictionary that maps student to a submission
     const students = Object()
@@ -41,7 +72,9 @@ const getStudents = async () => {
         submissions: [],
       }
     });
-
+    
+    //getStudents().then(response => console.log('Students With Async/Await: ', response));
+    //--------------Building submissions object----------------------
     const submissionsSnapshot = await submissionsQuery;
 
     submissionsSnapshot.forEach((submisionDocument) => {
@@ -56,6 +89,8 @@ const getStudents = async () => {
         subAssignID: submisionDocument.data().Assignment_ID
       };
       
+
+
       const ids = Object.keys(submisionDocument.data().Owner_IDs);  
       ids.forEach((ownerId) => {
           const student = students[ownerId];
