@@ -19,6 +19,62 @@ const config = {
 
   let db = firebase.firestore();
 
+
+//--------------CURRENTLY WORKING ON-----------------------------
+
+  /**
+   * Building an array of Assignments 
+   */
+
+   const getAssignments = async() => {
+      //----------------------------------------------------------
+    // Building assignments object
+
+    const assignmentQuery = db.collection('Databases').doc('Dev_Database')
+    .collection('Assignments').get();   
+
+    const assignmentSnapshot = await assignmentQuery;
+
+    const assignment = Object()
+
+     //new dictionary to hols assignment due date and  and submission date
+     //the goal is for each assignmetn to know the date it was due and it was submitted
+     //this information can be used further for calculating if it was late
+     
+     //EXAMPLE: 
+     //SubmissionStatus {
+        //assignDate: Timestamp object{},
+        //submitedDate: Timestamp object{}
+     //}
+    const submissionStatus = Object()
+
+    assignmentSnapshot.forEach((assignmentDoc) =>{
+      assignment[assignmentDoc.id] = {
+        id: assignmentDoc.id,
+        dueDate: assignmentDoc.data().Date_Due,
+        assignName: assignmentDoc.data().Description,
+        //subs:[]
+      }
+      //----------CURRENT DICTIONARY WORKING ON---------------------
+      //this part returns undeffined fields in the console, need to find other way
+      submissionStatus[assignmentDoc] = {
+        assignDate: assignment.dueDate,
+        submitedDate: assignment.submissionDate,  
+      }
+
+    });
+    
+    //was testing the submissionStats dictionary - returns undeffined fields, ID is good
+    //return submissionStatus
+
+    return assignment
+
+   }
+
+   getAssignments().then(response => console.log('Assignments : ', response));
+
+//--------------PREVIOUS WORK-----------------------
+
 /**
  * Building and array of students with their submissios grades
  */
@@ -31,6 +87,8 @@ const getStudents = async () => {
     const submissionsQuery = db.collection('Databases').doc('Dev_Database')
             .collection('Submissions').get();
 
+         
+
     const studentQuerySnapshot = await studentQuery;
     //creating the dictionary that maps student to a submission
     const students = Object()
@@ -41,15 +99,25 @@ const getStudents = async () => {
         submissions: [],
       }
     });
-
+    
+    //getStudents().then(response => console.log('Students With Async/Await: ', response));
+    //--------------Building submissions object----------------------
     const submissionsSnapshot = await submissionsQuery;
 
     submissionsSnapshot.forEach((submisionDocument) => {
       const submission = {
         id: submisionDocument.id,
         grade: submisionDocument.data().Current_Grade,
+        //A Timestamp represents a point in time independent of any time zone or calendar, 
+        //represented as seconds and fractions of seconds at nanosecond resolution in UTC Epoch time
+        //compareTo(Timestamp other) - to compare two timestamps
+        //need to find the assignment date
+        submissionDate: submisionDocument.data().Date_Submitted,
+        subAssignID: submisionDocument.data().Assignment_ID
       };
       
+
+
       const ids = Object.keys(submisionDocument.data().Owner_IDs);  
       ids.forEach((ownerId) => {
           const student = students[ownerId];

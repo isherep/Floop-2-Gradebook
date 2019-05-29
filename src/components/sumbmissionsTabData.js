@@ -11,8 +11,10 @@ import studentsTest from '../mock-data/studentsTest.json';
 //import database from '../Data/database';
 import * as firebase from 'firebase';
 
-
-class ViewByAssignment extends Component {
+//Submissions have two main fields : Accessed(true, false), Date Submitted, Grade
+//Assignemnts have due date
+//Iterate through submissions to compare submission date with the assignment date
+class ViewBySubmission extends Component {
     constructor(props) {
         super(props);
     
@@ -67,8 +69,8 @@ class ViewByAssignment extends Component {
         })
         console.log("index", index)
     }
-  /*
-    * Dictionary(map) that holds information about the grade
+    /*
+    * Dictionary that holds information about the grade
     * @param s - submission id
     * @param i - submission grade 
     */
@@ -195,4 +197,4 @@ class ViewByAssignment extends Component {
         );
     }
 }
-export default ViewByAssignment;
+export default ViewBySubmission;
