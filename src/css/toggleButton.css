@@ -7,11 +7,16 @@
 .toggleButton {
   margin-top: 15px;
   position: absolute;
+  width: 60%;
 }
 
 .toggleButton li {
     list-style-type: none;
     padding-right: 15px;
+}
+
+.subtoggleButton {
+  float: right;
 }
 
 .switch {

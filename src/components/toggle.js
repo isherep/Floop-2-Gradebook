@@ -23,7 +23,7 @@ class Toggle extends Component {
     render() {
         return (
             <div class="toggleButton">
-                <Flexbox flexDirection="row">
+                <Flexbox flexDirection="row" className="subtoggleButton">
                 <li><b>View by Assignment</b></li>
                 <li>
                 <label class="switch">
