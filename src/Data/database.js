@@ -18,10 +18,13 @@ const config = {
   firebase.initializeApp(config);
 
   let db = firebase.firestore();
+
+
+//--------------CURRENTLY WORKING ON-----------------------------
+
   /**
    * Building an array of Assignments 
    */
-
 
    const getAssignments = async() => {
       //----------------------------------------------------------
@@ -34,7 +37,15 @@ const config = {
 
     const assignment = Object()
 
-     //new dictionary to hols assignment data and due date
+     //new dictionary to hols assignment due date and  and submission date
+     //the goal is for each assignmetn to know the date it was due and it was submitted
+     //this information can be used further for calculating if it was late
+     
+     //EXAMPLE: 
+     //SubmissionStatus {
+        //assignDate: Timestamp object{},
+        //submitedDate: Timestamp object{}
+     //}
     const submissionStatus = Object()
 
     assignmentSnapshot.forEach((assignmentDoc) =>{
@@ -44,7 +55,8 @@ const config = {
         assignName: assignmentDoc.data().Description,
         //subs:[]
       }
-
+      //----------CURRENT DICTIONARY WORKING ON---------------------
+      //this part returns undeffined fields in the console, need to find other way
       submissionStatus[assignmentDoc] = {
         assignDate: assignment.dueDate,
         submitedDate: assignment.submissionDate,  
@@ -52,35 +64,16 @@ const config = {
 
     });
     
+    //was testing the submissionStats dictionary - returns undeffined fields, ID is good
+    //return submissionStatus
 
-    /*
-    * const ids = Object.keys(submisionDocument.data().Owner_IDs);  
-      ids.forEach((ownerId) => {
-          const student = students[ownerId];
-          student.submissions.push(submission)
-        });
-
-    */
-
-    //new dictionary to hols assignment data and due date
-    /*
-    const submissionStatus = {
-      assignDate: dueDate,
-      submitedDate: submissionDate,
-
-    }
-    */
-    
-
-    //console.log("Assignment Snapshot ", assignmentSnapshot)
-    return submissionStatus
-
-
+    return assignment
 
    }
 
    getAssignments().then(response => console.log('Assignments : ', response));
 
+//--------------PREVIOUS WORK-----------------------
 
 /**
  * Building and array of students with their submissios grades
