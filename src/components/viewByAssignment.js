@@ -67,7 +67,11 @@ class ViewByAssignment extends Component {
         })
         console.log("index", index)
     }
-
+  /*
+    * Dictionary(map) that holds information about the grade
+    * @param s - submission id
+    * @param i - submission grade 
+    */
    getGrade(s, i) {
       if (i >= s.submissions.length) {
         return null;

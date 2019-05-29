@@ -48,6 +48,12 @@ const getStudents = async () => {
       const submission = {
         id: submisionDocument.id,
         grade: submisionDocument.data().Current_Grade,
+        //A Timestamp represents a point in time independent of any time zone or calendar, 
+        //represented as seconds and fractions of seconds at nanosecond resolution in UTC Epoch time
+        //compareTo(Timestamp other) - to compare two timestamps
+        //need to find the assignment date
+        submissionDate: submisionDocument.data().Date_Submitted,
+        subAssignID: submisionDocument.data().Assignment_ID
       };
       
       const ids = Object.keys(submisionDocument.data().Owner_IDs);  
