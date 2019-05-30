@@ -22,18 +22,27 @@ const config = {
 
 //--------------CURRENTLY WORKING ON-----------------------------
 
+
+  
   /**
    * Building an array of Assignments 
    */
 
+   /*
    const getAssignments = async() => {
       //----------------------------------------------------------
     // Building assignments object
-
     const assignmentQuery = db.collection('Databases').doc('Dev_Database')
     .collection('Assignments').get();   
 
     const assignmentSnapshot = await assignmentQuery;
+
+    const submissionsQuery = db.collection('Databases').doc('Dev_Database')
+            .collection('Submissions').get();
+
+         
+    const submissionsSnapshot = await submissionsQuery;
+    
 
     const assignment = Object()
 
@@ -46,7 +55,7 @@ const config = {
         //assignDate: Timestamp object{},
         //submitedDate: Timestamp object{}
      //}
-    const submissionStatus = Object()
+   // const submissionStatus = Object()
 
     assignmentSnapshot.forEach((assignmentDoc) =>{
       assignment[assignmentDoc.id] = {
@@ -58,20 +67,41 @@ const config = {
       //----------CURRENT DICTIONARY WORKING ON---------------------
       //this part returns undeffined fields in the console, need to find other way
       submissionStatus[assignmentDoc] = {
-        assignDate: assignment.dueDate,
-        submitedDate: assignment.submissionDate,  
+        assignDate: assignmentDoc.data().Date_Due,
+        //submitedDate: assignment.submissionDate,  
       }
 
+    });
+
+    //would have to retrieve submissions again
+    submissionsSnapshot.forEach((submisionDocument) => {
+      //const submission = {
+        //id: submisionDocument.id,
+        //grade: submisionDocument.data().Current_Grade,
+        //A Timestamp represents a point in time independent of any time zone or calendar, 
+        //represented as seconds and fractions of seconds at nanosecond resolution in UTC Epoch time
+        //compareTo(Timestamp other) - to compare two timestamps
+        //need to find the assignment date
+       // submissionDate: submisionDocument.data().Date_Submitted,
+        //subAssignID: submisionDocument.data().Assignment_ID
+      //};
+
+
+      submissionStatus[assignmentDoc] = {
+        //assignDate: assignmentDoc.data().Date_Due,
+        submitedDate: submisionDocument.data().Date_Submitted,  
+      }
     });
     
     //was testing the submissionStats dictionary - returns undeffined fields, ID is good
     //return submissionStatus
 
-    return assignment
+    return submissionStatus
 
    }
 
    getAssignments().then(response => console.log('Assignments : ', response));
+*/
 
 //--------------PREVIOUS WORK-----------------------
 
@@ -86,6 +116,13 @@ const getStudents = async () => {
     
     const submissionsQuery = db.collection('Databases').doc('Dev_Database')
             .collection('Submissions').get();
+
+
+
+    const assignmentQuery = db.collection('Databases').doc('Dev_Database')
+            .collection('Assignments').get();   
+        
+         
 
          
 
@@ -104,6 +141,22 @@ const getStudents = async () => {
     //--------------Building submissions object----------------------
     const submissionsSnapshot = await submissionsQuery;
 
+    const assignmentSnapshot = await assignmentQuery; 
+
+    const submissionStatus = Object();
+
+    const assignments = Object();
+
+    assignmentSnapshot.forEach((assignmentDoc) =>{
+      assignments[assignmentDoc.id] = {
+        id: assignmentDoc.id,
+        dueDate: assignmentDoc.data().Date_Due,
+        assignName: assignmentDoc.data().Description,
+        //subs:[]
+      }
+
+    });
+
     submissionsSnapshot.forEach((submisionDocument) => {
       const submission = {
         id: submisionDocument.id,
@@ -113,18 +166,39 @@ const getStudents = async () => {
         //compareTo(Timestamp other) - to compare two timestamps
         //need to find the assignment date
         submissionDate: submisionDocument.data().Date_Submitted,
-        subAssignID: submisionDocument.data().Assignment_ID
+        //subAssignID: submisionDocument.data().Assignment_ID
+        assignment: assignments[submisionDocument.data().Assignment_ID]
       };
-      
+      //will need to handle ass == null
+      if(!submission.assignment){
+      } else if(!submission.assignment.dueDate){
+          submission.status = "NO DUE DATE"
+      } else if (!submission.submissionDate) {
+        submission.status = "NOT SUBMITTED";
+      } else if (submission.submissionDate.nanoseconds > submission.assignment.dueDate.nanoseconds) {
+          submission.status = "LATE";
+      } else { 
+        submission.status = "ON TIME";
+      }
 
 
-      const ids = Object.keys(submisionDocument.data().Owner_IDs);  
+      const ids = Object.keys(submisionDocument.data().Owner_IDs); 
+
       ids.forEach((ownerId) => {
-          const student = students[ownerId];
+        const student = students[ownerId];
           student.submissions.push(submission)
         });
 
-      });
+      //----------CURRENT DICTIONARY WORKING ON---------------------
+      //this part returns undeffined fields in the console, need to find other way
+      //submissionStatus[assignmentDoc] = {
+       // assignDate: assignmentDoc.data().Date_Due,
+        //submitedDate: assignment.submissionDate,  
+      //}
+
+    });
+
+    
 
   return students;
 }
