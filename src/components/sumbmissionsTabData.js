@@ -14,7 +14,7 @@ import * as firebase from 'firebase';
 //Submissions have two main fields : Accessed(true, false), Date Submitted, Grade
 //Assignemnts have due date
 //Iterate through submissions to compare submission date with the assignment date
-class ViewBySubmission extends Component {
+class sumbmissionsTabData extends Component {
     constructor(props) {
         super(props);
     
@@ -197,4 +197,4 @@ class ViewBySubmission extends Component {
         );
     }
 }
-export default ViewBySubmission;
+export default sumbmissionsTabData;
