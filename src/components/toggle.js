@@ -60,22 +60,23 @@ class Toggle extends Component {
                             <Tab className="respondedTab">%Feedback Responded</Tab>
                         </TabList>
                         <TabPanel style={{background: "#ffe6ff"}}>
-                            <SumbmissionsTab/> {/* <ViewByAssignment/>*/}
+                             <ViewByAssignment/>
                         </TabPanel>
                         <TabPanel style={{background: "#f2e6ff"}}>
-                            <SumbmissionsTab/> {/* <ViewByAssignment/>*/}
+                            <ViewByAssignment/>
                         </TabPanel>
                         <TabPanel style={{background: "#e6ffe6"}}>
-                            <SumbmissionsTab/> {/* <ViewByAssignment/>*/}
+                            <SumbmissionsTab/>
                         </TabPanel>
                         <TabPanel style={{background: "#ffffe6"}}>
-                            <SumbmissionsTab/>{/* <ViewByAssignment/>*/}
+                            <SumbmissionsTab/>
                         </TabPanel>
                         <TabPanel style={{background: "#ffeecc"}}>
-                            <SumbmissionsTab/> {/* <ViewByAssignment/>*/}
+                             <ViewByAssignment/>
                         </TabPanel>
                     </Tabs>
                 }
+                
                 {!this.state.on && 
                     <Tabs className="tabs">
                     <TabList className="tabList">
