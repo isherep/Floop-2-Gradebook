@@ -4,6 +4,7 @@ import ViewByMetric from './viewByMetric';
 import ViewByAssignment from './viewByAssignment';
 import SumbmissionsTab from './sumbmissionsTabData';
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import Flexbox from 'flexbox-react';
 import '../css/navTab.css';
 import DrawerToggleButton from './DrawerToggleButton';
 import 'react-tabs/style/react-tabs.css';
@@ -35,7 +36,7 @@ class Toggle extends Component {
     render() {
         return (
             <div class="toggleButton">
-                <ul>
+                <Flexbox flexDirection="row" className="subtoggleButton">
                 <li><b>View by Assignment</b></li>
                 <li>
                 <label class="switch">
@@ -44,9 +45,9 @@ class Toggle extends Component {
                 </label>
                 </li>
                 <li><b>View by Metric</b></li>
-                </ul>
+                </Flexbox>
                 <div className="toggler">
-                {this.state.on && 
+                {this.state.on &&
                     <Tabs className="tabs">
                         <div className="toolbar-toggle-button">
                         <DrawerToggleButton click={this.props.drawerClickHandler}/>
@@ -76,8 +77,9 @@ class Toggle extends Component {
                         </TabPanel>
                     </Tabs>
                 }
-                
-                {!this.state.on && 
+
+                {!this.state.on &&
+
                     <Tabs className="tabs">
                     <TabList className="tabList">
                         <Tab className="subTab">Assignment 1</Tab>

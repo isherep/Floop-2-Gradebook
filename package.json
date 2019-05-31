@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "firebase": "^6.0.1",
+    "flexbox-react": "^4.4.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-html-table-to-excel": "^2.0.0",
