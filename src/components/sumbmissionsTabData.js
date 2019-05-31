@@ -14,7 +14,7 @@ import * as firebase from 'firebase';
 //Submissions have two main fields : Accessed(true, false), Date Submitted, Grade
 //Assignemnts have due date
 //Iterate through submissions to compare submission date with the assignment date
-class ViewBySubmission extends Component {
+class sumbmissionsTabData extends Component {
     constructor(props) {
         super(props);
     
@@ -74,13 +74,13 @@ class ViewBySubmission extends Component {
     * @param s - submission id
     * @param i - submission grade 
     */
-   getGrade(s, i) {
+   getStatus(s, i) {
       if (i >= s.submissions.length) {
         return null;
       } else {
         console.log("Student ", s.name, s.submissions);
-        console.log("Student ", s.name, " grade ", i, s.submissions[i].grade);
-        return s.submissions[i].grade
+        console.log("Student ", s.name, " grade ", i, s.submissions[i].status);
+        return s.submissions[i].status
       }
     }
 
@@ -101,63 +101,63 @@ class ViewBySubmission extends Component {
             {
                 Header: "Assignment 1",
                 id: "ass1",
-                accessor: s => { return this.getGrade(s, 0); },
+                accessor: s => { return this.getStatus(s, 0); },
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 2",
                 id: "ass2",
-                accessor: s => this.getGrade(s, 1),
+                accessor: s => this.getStatus(s, 1),
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 3",
                 id: "ass3",
-                accessor: s => this.getGrade(s, 2),
+                accessor: s => this.getStatus(s, 2),
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 4",
                 id: "ass4",
-                accessor: s => this.getGrade(s, 3),
+                accessor: s => this.getStatus(s, 3),
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 5",
                 id: "ass5",
-                accessor: s => this.getGrade(s, 4),
+                accessor: s => this.getStatus(s, 4),
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 6",
                 id: "ass6",
-                accessor: s => this.getGrade(s, 5),
+                accessor: s => this.getStatus(s, 5),
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 7",
                 id: "ass7",
-                accessor: s => this.getGrade(s, 6),
+                accessor: s => this.getStatus(s, 6),
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 8",
                 id: "ass8",
-                accessor: s => this.getGrade(s, 7),
+                accessor: s => this.getStatus(s, 7),
                 Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 9",
                 id: "ass9",
-                accessor: s => this.getGrade(s, 8),
+                accessor: s => this.getStatus(s, 8),
                 Cell: this.renderEditable,
                 minWidth: 150,
             },
@@ -197,4 +197,4 @@ class ViewBySubmission extends Component {
         );
     }
 }
-export default ViewBySubmission;
+export default sumbmissionsTabData;
