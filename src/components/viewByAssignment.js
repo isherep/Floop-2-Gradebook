@@ -6,7 +6,7 @@ import withFixedColumns from 'react-table-hoc-fixed-columns';
 import 'react-table-hoc-fixed-columns/lib/styles.css';
 import '../css/database.css';
 import { getStudents} from '../Data/database';
-import studentsTest from '../mock-data/studentsTest.json';
+import studentsTest from '../mock-data/students';
 //import {getAssignments} from '../Data/database'
 //import database from '../Data/database';
 import * as firebase from 'firebase';
@@ -18,34 +18,27 @@ class ViewByAssignment extends Component {
     
         this.state = {
             students: [],
-            studentsAsync: [],
-            studentsPromise: [],
-            submissions:[],
-            buildGrade: []
+            studentSubStatus: []
         }
-        // this.renderEditable = this.renderEditable.bind(this);
+         this.renderEditable = this.renderEditable.bind(this);
     }
+
     componentDidMount(){
         const rootRef = firebase.database().ref().child('react')
         const studentRef = rootRef.child('students')
         console.log(studentRef)
+        //holds key value pairs of student and grades
+        let studentAndGrades = Object()
+        let studentAndStatus = Object()
+        const studentArray = []
         //building student array
-        getStudents().then((students) => {
-          const studentArray = []
-
-          //const gradesArray = []
-          //push objects that look like mock data
-          const subStatusArray = []
-
+        //first get the students from the database
+        //then build a dicionary with each student id, name, grades
+        getStudents().then((students) => {        
           for(var id in students) {
             //array to hold grades
             var grades = []
-            //building submission grades
-            //console.log("New Students: ", students)
-
-            var studentGrades = Object()
-            console.log("Students Submissions: ", students[id].submissions)
-            for(var i =0; i< 8; i++){//students.submissions){
+            for(var i =0; i< 9; i++){//students.submissions){
                 if(!students[id].submissions[i]){
                   grades.push("none");
                 } else if(!students[id].submissions[i].grade){ 
@@ -54,19 +47,49 @@ class ViewByAssignment extends Component {
                   grades.push(students[id].submissions[i].grade)
                 }
             }  
-            console.log("Grades", grades)       
+     
+            studentAndGrades = {
+              id: students[id].id,
+              name: students[id].name,
+              a1: grades[0],
+              a2: grades[1],
+              a3: grades[2],
+              a4: grades[3],
+              a5: grades[4],
+              a6: grades[5],
+              a7: grades[6],
+              a8: grades[7],
+              a9: grades[8]
+            }
+            //prints in console
+            console.log("studentAndGrades: ", studentAndGrades )
+            studentArray.push(studentAndGrades);
+          
+            studentAndStatus = {
+              id: students[id].id,
+              name: students[id].name,
+              a1: grades[0],
+              a2: grades[1],
+              a3: grades[2],
+              a4: grades[3],
+              a5: grades[4],
+              a6: grades[5],
+              a7: grades[6],
+              a8: grades[7],
+              a9: grades[8]
+            }
           }
-            console.log("Grades", grades)
-            studentArray.push(students[id]);
-            console.log("Student: ", students[id]);
         
-         
-          // console.log("StudentArray: ", studentArray);
-            
-            this.setState({
-              students: studentArray
-            });
+          this.setState({
+            students:  studentArray
+         });
+           console.log("StudentArray: ", studentArray);            
       });
+
+      
+
+     console.log("studentAndGrades", studentArray)
+     console.log("State: ", this.state.students)
     }
 
     renderEditable(cellInfo) {
@@ -79,24 +102,28 @@ class ViewByAssignment extends Component {
               students[cellInfo.index][cellInfo.column.id] = e.target.innerHTML;
               this.setState({students});
             }}
+
             dangerouslySetInnerHTML={{
-              __html: cellInfo.value
+              __html: 
+              //this.state.studentsAsync[cellInfo.index][cellInfo.column.id]
+              this.state.students[cellInfo.index][cellInfo.column.id]
             }}
           />
         );
     }
-
+/*
     deleteColumn(id) {
         const index = this.state.students.findIndex(student => {
           return student.id === id
         })
         console.log("index", index)
     }
+    */
   /*
     * Dictionary(map) that holds information about the grade
     * @param s - submission id
     * @param i - submission grade 
-    */
+    
    getGrade(s, i) {
       if (i >= s.submissions.length) {
         return null;
@@ -106,13 +133,16 @@ class ViewByAssignment extends Component {
         return s.submissions[i].grade
       }
     }
-
+*/
       /**
      * Builds and 2D array of the submission status per student
      */
 
     render() {
         const ReactTableFixedColumns = withFixedColumns(ReactTable);
+       
+        
+
         const columns = [
             {
                 Header: "Student ID",
@@ -127,65 +157,65 @@ class ViewByAssignment extends Component {
             },
             {
                 Header: "Assignment 1",
-                id: "ass1",
-                accessor: s => { return this.getGrade(s, 0); },
-                Cell: this.renderEditable,
+              //  id: "ass1",
+                accessor: "a1",
+               // Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 2",
-                id: "ass2",
-                accessor: s => this.getGrade(s, 1),
-                Cell: this.renderEditable,
+                //id: "ass2",
+                accessor: "a2",
+                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 3",
-                id: "ass3",
-                accessor: s => this.getGrade(s, 2),
-                Cell: this.renderEditable,
+              //  id: "ass3",
+                accessor: "a3",
+               // Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 4",
-                id: "ass4",
-                accessor: s => this.getGrade(s, 3),
-                Cell: this.renderEditable,
+                //id: "ass4",
+                accessor: "a4",
+                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 5",
-                id: "ass5",
-                accessor: s => this.getGrade(s, 4),
-                Cell: this.renderEditable,
+                //id: "ass5",
+                accessor: "a5",
+                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 6",
-                id: "ass6",
-                accessor: s => this.getGrade(s, 5),
-                Cell: this.renderEditable,
+                //id: "ass6",
+                accessor: "a6",
+                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 7",
-                id: "ass7",
-                accessor: s => this.getGrade(s, 6),
-                Cell: this.renderEditable,
+               // id: "ass7",
+                accessor: "a7",
+                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 8",
-                id: "ass8",
-                accessor: s => this.getGrade(s, 7),
-                Cell: this.renderEditable,
+                //id: "ass8",
+                accessor: "a8",
+                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: "Assignment 9",
-                id: "ass9",
-                accessor: s => this.getGrade(s, 8),
-                Cell: this.renderEditable,
+                //id: "ass9",
+                accessor: "a9",
+                //Cell: this.renderEditable,
                 minWidth: 150,
             },
             {
@@ -309,54 +339,23 @@ class ViewByAssignment extends Component {
         }      
   ]
 
-
-  //The goal is to build the data structure like this for the grades
-  const grades = [
-    //student one
-    { 
-      "id": "4525dfa-rqfea",
-      "name":"Maria",
-      //"a1": students[i].grade,
-      "a2": 10,
-      "a3": 10,
-      "a4": 10,
-      "a5": 10,
-      "a6": 10,
-      "a7": 10,
-      "a8": 10
-
-    }
-  ]
+  
 
 
-  const submissions = [
-    //student one
-    { 
-      "id": "4525dfa-rqfea",
-      "name":"Maria",
-      //"a1": student[i]. status,
-      "a2": 10,
-      "a3": 10,
-      "a4": 10,
-      "a5": 10,
-      "a6": 10,
-      "a7": 10,
-      "a8": 10
-
-    }
-  ]
 
 
   //The goal is to build the data structure like this for the submission status
-
+    console.log("State ", this.state)
         return(
           <ReactTableFixedColumns className="databaseStyle"
             columns={columns}
+            
             data={this.state.students}
             showPagination={false}
             filterable
             defaultPageSize={25}
             >
+            
             {(state, filteredData, instance) => {
               this.ReactTableFixedColumns = state.pageRows.map(student => {return student._original});
                 return (
