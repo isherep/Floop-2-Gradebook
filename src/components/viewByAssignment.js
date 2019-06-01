@@ -5,7 +5,7 @@ import 'react-table/react-table.css';
 import withFixedColumns from 'react-table-hoc-fixed-columns';
 import 'react-table-hoc-fixed-columns/lib/styles.css';
 import '../css/database.css';
-import {getStudentsAsynchronously,  getSubmissionsFirst ,getSubmissionsSecond, getStudents} from '../Data/database';
+import { getStudents} from '../Data/database';
 import studentsTest from '../mock-data/studentsTest.json';
 //import {getAssignments} from '../Data/database'
 //import database from '../Data/database';
@@ -20,29 +20,54 @@ class ViewByAssignment extends Component {
             students: [],
             studentsAsync: [],
             studentsPromise: [],
-            submissions:[]
+            submissions:[],
+            buildGrade: []
         }
         // this.renderEditable = this.renderEditable.bind(this);
     }
-
     componentDidMount(){
         const rootRef = firebase.database().ref().child('react')
         const studentRef = rootRef.child('students')
         console.log(studentRef)
+        //building student array
         getStudents().then((students) => {
           const studentArray = []
+
+          //const gradesArray = []
+          //push objects that look like mock data
+          const subStatusArray = []
+
           for(var id in students) {
+            //array to hold grades
+            var grades = []
+            //building submission grades
+            //console.log("New Students: ", students)
+
+            var studentGrades = Object()
+            console.log("Students Submissions: ", students[id].submissions)
+            for(var i =0; i< 8; i++){//students.submissions){
+                if(!students[id].submissions[i]){
+                  grades.push("none");
+                } else if(!students[id].submissions[i].grade){ 
+                  grades[i] ="none"
+                }else{
+                  grades.push(students[id].submissions[i].grade)
+                }
+            }  
+            console.log("Grades", grades)       
+          }
+            console.log("Grades", grades)
             studentArray.push(students[id]);
             console.log("Student: ", students[id]);
-          }
+        
+         
           // console.log("StudentArray: ", studentArray);
-          // studentRef.on('value', snap => {
+            
             this.setState({
               students: studentArray
             });
-        // })
       });
-}
+    }
 
     renderEditable(cellInfo) {
         return (
@@ -81,6 +106,10 @@ class ViewByAssignment extends Component {
         return s.submissions[i].grade
       }
     }
+
+      /**
+     * Builds and 2D array of the submission status per student
+     */
 
     render() {
         const ReactTableFixedColumns = withFixedColumns(ReactTable);
@@ -174,6 +203,152 @@ class ViewByAssignment extends Component {
                 }
             }
         ]
+
+      const studentMock = [
+       //------Student 1 Maria-------
+        {
+          "id":2,
+          "name":"Maria",
+          "submissions": [
+              //first submission
+            {
+          
+                "assignment": {
+                    "id": "B2F820F7-561A-4244-9D55",
+                    "assing name": "gabe test",
+                },
+                "Due Date": {
+                  "nanosecnds": 324212,
+                  "seconds": 345352
+                },
+                                   
+                "grade": "AB",
+                "id": "-LKUSh9s_pAgE2RdwWrb",
+                "status": "LATE",
+                
+                "submissionDate": {
+                  "nanoseconds": 673000000,
+                  "seconds": 1534905303
+                },
+
+              },
+
+                //second submission
+              {
+                "assignment" :{
+                  "id": "B2F820F7-561A-4244-9D55",
+                  "assing name": "gabe test"
+                },
+                  "Due Date": {
+                    "nanosecnds": 324212,
+                    "seconds": 345352
+                  },
+              
+                  
+              "grade": "AB",
+              "id": "-LKUSh9s_pAgE2RdwWrb",
+              "status": "LATE",
+              
+              "submissionDate": {
+                "nanoseconds": 673000000,
+                "seconds": 1534905303
+              },
+            }
+          ]
+      },
+
+      //------end of student 1
+
+      //--- student 2 Jose ----
+      {
+        "id":3,
+        "name":"Jose",
+        "submissions": [
+              // 0
+              {
+              "assignment": {
+                  "id": "4325327-561A-4244-9D55",
+                  "assing name": "Final assignment"
+                },
+                  "Due Date": {
+                    "nanosecnds": 325432,
+                    "seconds": 34457
+                  },
+              
+                  
+              "grade": "AB",
+              "id": "-LKUSh9s_pAgE2RdwWrb",
+              "status": "LATE",
+              
+              "submissionDate": {
+                "nanoseconds": 673000000,
+                "seconds": 1534905303
+              }
+            },
+            {
+              //1
+              "assignment" :{
+                "id": "B2F820F7-561A-4244-9D55",
+                "assing name": "gabe test",
+                "Due Date": {
+                  "nanosecnds": 324212,
+                  "seconds": 345352
+                },
+            },
+                
+            "grade": "AB",
+            "id": "-LKUSh9s_pAgE2RdwWrb",
+            "status": "LATE",
+            
+            "submissionDate": {
+              "nanoseconds": 673000000,
+              "seconds": 1534905303
+            }
+          }
+          ]
+        }      
+  ]
+
+
+  //The goal is to build the data structure like this for the grades
+  const grades = [
+    //student one
+    { 
+      "id": "4525dfa-rqfea",
+      "name":"Maria",
+      //"a1": students[i].grade,
+      "a2": 10,
+      "a3": 10,
+      "a4": 10,
+      "a5": 10,
+      "a6": 10,
+      "a7": 10,
+      "a8": 10
+
+    }
+  ]
+
+
+  const submissions = [
+    //student one
+    { 
+      "id": "4525dfa-rqfea",
+      "name":"Maria",
+      //"a1": student[i]. status,
+      "a2": 10,
+      "a3": 10,
+      "a4": 10,
+      "a5": 10,
+      "a6": 10,
+      "a7": 10,
+      "a8": 10
+
+    }
+  ]
+
+
+  //The goal is to build the data structure like this for the submission status
+
         return(
           <ReactTableFixedColumns className="databaseStyle"
             columns={columns}
@@ -194,5 +369,8 @@ class ViewByAssignment extends Component {
           </ReactTableFixedColumns>
         );
     }
+
+
+    
 }
 export default ViewByAssignment;
