@@ -38,9 +38,31 @@ class ViewByAssignment extends Component {
           for(var id in students) {
             //array to hold grades
             var grades = []
+            //array to hold submission status
+            var statuses = []
+
+           
+            for(var j = 0; j< 8; j++){
+              if(!students[id].submissions[j]){
+                statuses.push("NONE");
+              } else if(!!students[id].submissions[j].status){
+                statuses[j] = "NO ASSIGNMENT ASSIGNED YET"
+              } else if(!students[id].submission[j].dueDate){
+                statuses[j] = "NO DUE DATE"
+              } else if (!students[id].submission[j].submissionDate) {
+                statuses[j] = "NOT SUBMITTED";
+              } else {
+                statuses[j] = students[id].submission[j].status;
+              
+              }
+            }
+
+            
             for(var i =0; i< 9; i++){//students.submissions){
                 if(!students[id].submissions[i]){
                   grades.push("none");
+                  //statuses.push("NO DUE DATE")
+
                 } else if(!students[id].submissions[i].grade){ 
                   grades[i] ="none"
                 }else{
@@ -63,21 +85,23 @@ class ViewByAssignment extends Component {
             }
             //prints in console
             console.log("studentAndGrades: ", studentAndGrades )
-            studentArray.push(studentAndGrades);
+            //studentArray.push(studentAndGrades);
           
             studentAndStatus = {
               id: students[id].id,
               name: students[id].name,
-              a1: grades[0],
-              a2: grades[1],
-              a3: grades[2],
-              a4: grades[3],
-              a5: grades[4],
-              a6: grades[5],
-              a7: grades[6],
-              a8: grades[7],
-              a9: grades[8]
+              a1: statuses[0],
+              a2: statuses[1],
+              a3: statuses[2],
+              a4: statuses[3],
+              a5: statuses[4],
+              a6: statuses[5],
+              a7: statuses[6],
+              a8: statuses[7],
+              a9: statuses[8]
             }
+
+            studentArray.push(studentAndStatus)
           }
         
           this.setState({
