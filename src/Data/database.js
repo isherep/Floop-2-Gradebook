@@ -6,8 +6,8 @@ import { withFixedColumnsScrollEvent } from 'react-table-hoc-fixed-columns';
 
 // it will be best if you put the firestore config and initialization inside of it's own file, and then
 // import it into any file that needs to connect to the database and/or fetch data from the DB
-const config = {
-    apiKey: 'AIzaSyCN1XhqCTbzY5t2zhIqsa1gwZMwTObtPxE',
+const config = { 
+    apiKey:     'AIzaSyCN1XhqCTbzY5t2zhIqsa1gwZMwTObtPxE',
     authDomain: 'gradebook-2b1e6.firebaseapp.com',
     databaseURL: '"https://gradebook-2b1e6.firebaseio.com"',
     projectId: 'gradebook-2b1e6',
@@ -18,8 +18,6 @@ const config = {
   firebase.initializeApp(config);
 
   let db = firebase.firestore();
-
-
 
 /**
  * Building and array of students with their submissios grades
@@ -59,7 +57,7 @@ const getStudents = async () => {
 
     const assignmentSnapshot = await assignmentQuery; 
 
-    const submissionStatus = Object();
+    //const submissionStatus = Object();
 
     const assignments = Object();
 
@@ -114,10 +112,10 @@ const getStudents = async () => {
 
     });
 
-    
-
   return students;
 }
+
+getStudents().then(response => console.log("Students from Database",response));
 
 
 

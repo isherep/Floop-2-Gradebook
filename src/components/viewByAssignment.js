@@ -42,17 +42,17 @@ class ViewByAssignment extends Component {
             var statuses = []
 
            
-            for(var j = 0; j< 8; j++){
+            for(var j = 0; j< 9; j++){
               if(!students[id].submissions[j]){
                 statuses.push("NONE");
               } else if(!!students[id].submissions[j].status){
                 statuses[j] = "NO ASSIGNMENT ASSIGNED YET"
-              } else if(!students[id].submission[j].dueDate){
+              } else if(!students[id].submissions[j].dueDate){
                 statuses[j] = "NO DUE DATE"
-              } else if (!students[id].submission[j].submissionDate) {
+              } else if (!students[id].submissions[j].submissionDate) {
                 statuses[j] = "NOT SUBMITTED";
               } else {
-                statuses[j] = students[id].submission[j].status;
+                statuses[j] = students[id].submissions[j].status;
               
               }
             }
@@ -135,29 +135,15 @@ class ViewByAssignment extends Component {
           />
         );
     }
-/*
+
     deleteColumn(id) {
         const index = this.state.students.findIndex(student => {
           return student.id === id
         })
         console.log("index", index)
     }
-    */
-  /*
-    * Dictionary(map) that holds information about the grade
-    * @param s - submission id
-    * @param i - submission grade 
     
-   getGrade(s, i) {
-      if (i >= s.submissions.length) {
-        return null;
-      } else {
-        console.log("Student ", s.name, s.submissions);
-        console.log("Student ", s.name, " grade ", i, s.submissions[i].grade);
-        return s.submissions[i].grade
-      }
-    }
-*/
+  
       /**
      * Builds and 2D array of the submission status per student
      */
@@ -364,9 +350,6 @@ class ViewByAssignment extends Component {
   ]
 
   
-
-
-
 
   //The goal is to build the data structure like this for the submission status
     console.log("State ", this.state)
