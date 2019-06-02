@@ -6,8 +6,8 @@ import { withFixedColumnsScrollEvent } from 'react-table-hoc-fixed-columns';
 
 // it will be best if you put the firestore config and initialization inside of it's own file, and then
 // import it into any file that needs to connect to the database and/or fetch data from the DB
-const config = {
-    apiKey: 'AIzaSyCN1XhqCTbzY5t2zhIqsa1gwZMwTObtPxE',
+const config = { 
+    apiKey:     'AIzaSyCN1XhqCTbzY5t2zhIqsa1gwZMwTObtPxE',
     authDomain: 'gradebook-2b1e6.firebaseapp.com',
     databaseURL: '"https://gradebook-2b1e6.firebaseio.com"',
     projectId: 'gradebook-2b1e6',
@@ -18,92 +18,6 @@ const config = {
   firebase.initializeApp(config);
 
   let db = firebase.firestore();
-
-
-//--------------CURRENTLY WORKING ON-----------------------------
-
-
-  
-  /**
-   * Building an array of Assignments 
-   */
-
-   /*
-   const getAssignments = async() => {
-      //----------------------------------------------------------
-    // Building assignments object
-    const assignmentQuery = db.collection('Databases').doc('Dev_Database')
-    .collection('Assignments').get();   
-
-    const assignmentSnapshot = await assignmentQuery;
-
-    const submissionsQuery = db.collection('Databases').doc('Dev_Database')
-            .collection('Submissions').get();
-
-         
-    const submissionsSnapshot = await submissionsQuery;
-    
-
-    const assignment = Object()
-
-     //new dictionary to hols assignment due date and  and submission date
-     //the goal is for each assignmetn to know the date it was due and it was submitted
-     //this information can be used further for calculating if it was late
-     
-     //EXAMPLE: 
-     //SubmissionStatus {
-        //assignDate: Timestamp object{},
-        //submitedDate: Timestamp object{}
-     //}
-   // const submissionStatus = Object()
-
-    assignmentSnapshot.forEach((assignmentDoc) =>{
-      assignment[assignmentDoc.id] = {
-        id: assignmentDoc.id,
-        dueDate: assignmentDoc.data().Date_Due,
-        assignName: assignmentDoc.data().Description,
-        //subs:[]
-      }
-      //----------CURRENT DICTIONARY WORKING ON---------------------
-      //this part returns undeffined fields in the console, need to find other way
-      submissionStatus[assignmentDoc] = {
-        assignDate: assignmentDoc.data().Date_Due,
-        //submitedDate: assignment.submissionDate,  
-      }
-
-    });
-
-    //would have to retrieve submissions again
-    submissionsSnapshot.forEach((submisionDocument) => {
-      //const submission = {
-        //id: submisionDocument.id,
-        //grade: submisionDocument.data().Current_Grade,
-        //A Timestamp represents a point in time independent of any time zone or calendar, 
-        //represented as seconds and fractions of seconds at nanosecond resolution in UTC Epoch time
-        //compareTo(Timestamp other) - to compare two timestamps
-        //need to find the assignment date
-       // submissionDate: submisionDocument.data().Date_Submitted,
-        //subAssignID: submisionDocument.data().Assignment_ID
-      //};
-
-
-      submissionStatus[assignmentDoc] = {
-        //assignDate: assignmentDoc.data().Date_Due,
-        submitedDate: submisionDocument.data().Date_Submitted,  
-      }
-    });
-    
-    //was testing the submissionStats dictionary - returns undeffined fields, ID is good
-    //return submissionStatus
-
-    return submissionStatus
-
-   }
-
-   getAssignments().then(response => console.log('Assignments : ', response));
-*/
-
-//--------------PREVIOUS WORK-----------------------
 
 /**
  * Building and array of students with their submissios grades
@@ -143,7 +57,7 @@ const getStudents = async () => {
 
     const assignmentSnapshot = await assignmentQuery; 
 
-    const submissionStatus = Object();
+    //const submissionStatus = Object();
 
     const assignments = Object();
 
@@ -198,10 +112,13 @@ const getStudents = async () => {
 
     });
 
-    
-
   return students;
 }
+
+getStudents().then(response => console.log("Students from Database",response));
+
+
+
 
 
 // Boom! Even though we used Async/Await, we still know that this function is going to return a promise. So for 
