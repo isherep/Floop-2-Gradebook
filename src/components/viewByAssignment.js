@@ -31,6 +31,8 @@ class ViewByAssignment extends Component {
         let studentAndGrades = Object()
         let studentAndStatus = Object()
         const studentArray = []
+        const studentGradesArray = []
+        const studentStatusesArray = []
         //building student array
         //first get the students from the database
         //then build a dicionary with each student id, name, grades
@@ -85,7 +87,7 @@ class ViewByAssignment extends Component {
             }
             //prints in console
             console.log("studentAndGrades: ", studentAndGrades )
-            //studentArray.push(studentAndGrades);
+            studentGradesArray.push(studentAndGrades);
           
             studentAndStatus = {
               id: students[id].id,
@@ -101,11 +103,11 @@ class ViewByAssignment extends Component {
               a9: statuses[8]
             }
 
-            studentArray.push(studentAndStatus)
+            studentStatusesArray.push(studentAndStatus)
           }
         
           this.setState({
-            students:  studentArray
+            students:  studentStatusesArray
          });
            console.log("StudentArray: ", studentArray);            
       });

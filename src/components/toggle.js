@@ -13,7 +13,7 @@ class Toggle extends Component {
 
    state = {
        on: true,
-       TabPanel:  ViewByAssignment
+       //TabPanel:  ViewByAssignment
    }
 
    toggle = () => {
@@ -25,10 +25,11 @@ class Toggle extends Component {
    routeChangeSubmissions = () => {
     //let path = `sumbmissionsTabData`;
     //this.props.history.push(path);
-        this.setState({
-            //on: this.state.on,
-            
-            TabPanel: SumbmissionsTab
+        ViewByAssignment.setState({
+           
+           //change form grades to submissions 
+           //not reading this variable, neec to figure out the way to import
+           // students: studentStatusesArray;
         })
 
     }
