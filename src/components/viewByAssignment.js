@@ -17,11 +17,21 @@ class ViewByAssignment extends Component {
     
         this.state = {
             students: [],
-            studentSubStatus: []
+           // studentSubStatus: []
         }
          this.renderEditable = this.renderEditable.bind(this);
-    }
+         this.studentGradesArray = []
+          this.studentStatusesArray = []
+      }
 
+      switchToGrades() {
+        this.setState(this.studentAndGradesArray)
+      }
+
+      switchToStatuses() {
+        this.setState(this.studentStatusesArray)
+      }
+    
   /**
    * This function makes an asynchronous call to the getStudents function in the database and pulls
    * all the students information.
@@ -34,12 +44,10 @@ class ViewByAssignment extends Component {
         const studentRef = rootRef.child('students')
         console.log(studentRef)
         //holds key value pairs of student and grades
-        let studentAndGrades = Object()
-        let studentAndStatus = Object()
         const studentArray = []
         // initializing arrays to hold grades and statuses objects
-        const studentGradesArray = []
-        const studentStatusesArray = []
+        let studentAndGrades = Object()
+        let studentAndStatus = Object()
         //building student array
         //first get the students from the database
         //then build a dicionary with each student id, name, grades
@@ -96,7 +104,7 @@ class ViewByAssignment extends Component {
             //prints in console
             console.log("studentAndGrades: ", studentAndGrades )
             //adding each student object to the array of grades
-            studentGradesArray.push(studentAndGrades);
+            this.studentGradesArray.push(studentAndGrades);
           //student object that holds submission statuses only
             studentAndStatus = {
               id: students[id].id,
@@ -112,11 +120,11 @@ class ViewByAssignment extends Component {
               a9: statuses[8]
             }
             //adding each student object to the array of statuses
-            studentStatusesArray.push(studentAndStatus)
+            this.studentStatusesArray.push(studentAndStatus)
           }
           //setting the state in this case to statuses
           this.setState({
-            students:  studentStatusesArray
+            students:  this.studentStatusesArray
          });
           //checking
            console.log("StudentArray: ", studentArray);            

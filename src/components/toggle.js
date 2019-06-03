@@ -54,8 +54,8 @@ class Toggle extends Component {
                         </div>
                         
                         <TabList className="tabList">
-                            <Tab className="subTab" onClick={this.routeChangeSubmissions}>Submissions</Tab>
-                            <Tab className="gradesTab">Grades</Tab>
+                            <Tab className="subTab" onClick={this.ViewByAssignment.switchToStatuses()}>Submissions</Tab>
+                            <Tab className="gradesTab" onClick={this.ViewByAssignment.switchToGrades()}>Grades</Tab>
                             <Tab className="feedbackTab">Feedback</Tab>
                             <Tab className="readTab">%Feedback Read</Tab>
                             <Tab className="respondedTab">%Feedback Responded</Tab>
