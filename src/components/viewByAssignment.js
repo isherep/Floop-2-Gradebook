@@ -21,13 +21,13 @@ class ViewByAssignment extends Component {
         }
          this.renderEditable = this.renderEditable.bind(this);
          this.studentGradesArray = []
-          this.studentStatusesArray = []
+        this.studentStatusesArray = []
       }
-
+      //switches state to grades
       switchToGrades() {
         this.setState(this.studentAndGradesArray)
       }
-
+      //switches state to submission statuses
       switchToStatuses() {
         this.setState(this.studentStatusesArray)
       }
@@ -123,8 +123,9 @@ class ViewByAssignment extends Component {
             this.studentStatusesArray.push(studentAndStatus)
           }
           //setting the state in this case to statuses
+          // if you do students: studentStatusesArray the table will show grades
           this.setState({
-            students:  this.studentStatusesArray
+            students:  this.studentGradesArray
          });
           //checking
            console.log("StudentArray: ", studentArray);            
@@ -135,41 +136,7 @@ class ViewByAssignment extends Component {
      console.log("State: ", this.state.students)
     }
 
-  /**
-   * Changes the status on a lick o the tab. By changing the status, it changes the data array that feeds the 
-   * data property of React-Table .
-   */  
   
-   
-   /*
-  onClick = (e) => {
-    switch(e.target.id){
-        case "Grades":
-            //const assignmentSorted = sortDetails.sortAssignments(this.state.assignments);
-            const studentGradesArray = //need to find a way to transfer from componentDidMount.
-            this.setState({students: studentGradesArray});
-            break;
-        case "Submissions":
-            const studentStatusesArray = //need to link 
-            this.setState({students: studentStatusesArray});
-            break;
-         case "Feedback":
-           
-            break;
-         case "% Feedback read":
-           
-            break;
-         case "% Feedback responded to":
-           
-            break;
-            default: 
-              this.setState({students: studentGradesArray})
-         
-    }
- }
- */
-
-
     renderEditable(cellInfo) {
         return (
           <div
@@ -404,7 +371,7 @@ class ViewByAssignment extends Component {
   
 
   //The goal is to build the data structure like this for the submission status
-    console.log("State ", this.state)
+   // console.log("State ", this.state)
         return(
           <ReactTableFixedColumns className="databaseStyle"
             columns={columns}

@@ -11,10 +11,35 @@ import 'react-tabs/style/react-tabs.css';
 
 class Toggle extends Component {
 
-   state = {
-       on: true,
-       //TabPanel:  ViewByAssignment
-   }
+    constructor(props) {
+        super(props);
+        //creating a refference of ViewByAssignment component in the Toggle view 
+        this.assignmentView = React.createRef()
+        //contrils the toggle between view by assignemtn and Metric View
+        //does not control table data, table data is set in ViewByAssignment
+        this.state = {
+            on: true,
+        }
+       
+     }
+        /*
+     onClick = () => {
+        this.ViewByAssignment.switchToGrades();
+      }
+        */
+      /**
+       * Method to change the state of child view by assignment component
+       */
+      handleClick = () =>{
+          //thows an error - cannot read property current.switchToGrades() of  null
+          this.assignmentView.current.switchToGrades()
+      }
+
+     // The parent component can manage child state passing a prop to child and 
+     // the child convert this prop in state using componentWillReceiveProps.
+     componentWillReceiveProps(props) {
+        this.setState({ open: props.drawerOpen })
+      }
 
    toggle = () => {
        this.setState({
@@ -22,17 +47,7 @@ class Toggle extends Component {
        })
    }
 
-   routeChangeSubmissions = () => {
-    
-        ViewByAssignment.setState({
-           
-           //change form grades to submissions 
-           //not reading this variable, need to figure out the way to import
-           // students: studentStatusesArray;
-        })
-
-    }
-
+   
     render() {
         return (
             <div class="toggleButton">
@@ -52,25 +67,29 @@ class Toggle extends Component {
                         <div className="toolbar-toggle-button">
                         <DrawerToggleButton click={this.props.drawerClickHandler}/>
                         </div>
-                        
+                        {/* toggle tabs on a left*/}
                         <TabList className="tabList">
-                            <Tab className="subTab" onClick={this.ViewByAssignment.switchToStatuses()}>Submissions</Tab>
-                            <Tab className="gradesTab" onClick={this.ViewByAssignment.switchToGrades()}>Grades</Tab>
+                            {/* Submission tab*/}
+                            <Tab className="subTab">Submissions</Tab>
+                            {/* Grades tab - onClick changes data from submission statuses to grades*/}
+                            <Tab className="gradesTab">Grades</Tab>
                             <Tab className="feedbackTab">Feedback</Tab>
                             <Tab className="readTab">%Feedback Read</Tab>
                             <Tab className="respondedTab">%Feedback Responded</Tab>
                         </TabList>
-                        <TabPanel style={{background: "#ffe6ff"}}>
-                             <ViewByAssignment/>
+                        <TabPanel style={{background: "#ffe6ff"}} onClick={this.handleClick}>
+                             <ViewByAssignment ref = {this.assignmentView} />
+                             <Tab className="gradesTab" onClick={this.handleClick}>Grades</Tab>
+                             
                         </TabPanel>
                         <TabPanel style={{background: "#f2e6ff"}}>
                             <ViewByAssignment/>
                         </TabPanel>
                         <TabPanel style={{background: "#e6ffe6"}}>
-                            <SumbmissionsTab/>
+                            <ViewByAssignment/>
                         </TabPanel>
                         <TabPanel style={{background: "#ffffe6"}}>
-                            <SumbmissionsTab/>
+                            <ViewByAssignment/>
                         </TabPanel>
                         <TabPanel style={{background: "#ffeecc"}}>
                              <ViewByAssignment/>
