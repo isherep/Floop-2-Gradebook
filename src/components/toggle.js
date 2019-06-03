@@ -8,6 +8,7 @@ import Flexbox from 'flexbox-react';
 import '../css/navTab.css';
 import DrawerToggleButton from './DrawerToggleButton';
 import 'react-tabs/style/react-tabs.css';
+import sumbmissionsTabData from './sumbmissionsTabData';
 
 class Toggle extends Component {
 
@@ -78,9 +79,7 @@ class Toggle extends Component {
                             <Tab className="respondedTab">%Feedback Responded</Tab>
                         </TabList>
                         <TabPanel style={{background: "#ffe6ff"}} onClick={this.handleClick}>
-                             <ViewByAssignment ref = {this.assignmentView} />
-                             <Tab className="gradesTab" onClick={this.handleClick}>Grades</Tab>
-                             
+                             <ViewByAssignment ref = {this.assignmentView} />                           
                         </TabPanel>
                         <TabPanel style={{background: "#f2e6ff"}}>
                             <ViewByAssignment/>
@@ -89,7 +88,7 @@ class Toggle extends Component {
                             <ViewByAssignment/>
                         </TabPanel>
                         <TabPanel style={{background: "#ffffe6"}}>
-                            <ViewByAssignment/>
+                            <SumbmissionsTab/>
                         </TabPanel>
                         <TabPanel style={{background: "#ffeecc"}}>
                              <ViewByAssignment/>

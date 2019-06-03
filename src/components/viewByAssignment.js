@@ -79,10 +79,10 @@ class ViewByAssignment extends Component {
             // adding submission grade the  grades array
             for(var i =0; i< 9; i++){//students.submissions){
                 if(!students[id].submissions[i]){
-                  grades.push("none");
+                  grades.push("n/a");
                   
                 } else if(!students[id].submissions[i].grade){ 
-                  grades[i] ="none"
+                  grades[i] ="not graded"
                 }else{
                   grades.push(students[id].submissions[i].grade)
                 }
@@ -125,7 +125,7 @@ class ViewByAssignment extends Component {
           //setting the state in this case to statuses
           // if you do students: studentStatusesArray the table will show grades
           this.setState({
-            students:  this.studentGradesArray
+            students:  this.studentStatusesArray
          });
           //checking
            console.log("StudentArray: ", studentArray);            
