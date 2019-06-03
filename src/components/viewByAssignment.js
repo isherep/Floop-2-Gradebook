@@ -6,31 +6,48 @@ import withFixedColumns from 'react-table-hoc-fixed-columns';
 import 'react-table-hoc-fixed-columns/lib/styles.css';
 import '../css/database.css';
 import { getStudents} from '../Data/database';
-import studentsTest from '../mock-data/students';
-//import {getAssignments} from '../Data/database'
-//import database from '../Data/database';
 import * as firebase from 'firebase';
 
-
+/**
+ * This component creates a react-table with students arrays as rows and assignments as columns
+ */
 class ViewByAssignment extends Component {
     constructor(props) {
         super(props);
     
         this.state = {
             students: [],
-            studentSubStatus: []
+           // studentSubStatus: []
         }
          this.renderEditable = this.renderEditable.bind(this);
-    }
+         this.studentGradesArray = []
+          this.studentStatusesArray = []
+      }
 
+      switchToGrades() {
+        this.setState(this.studentAndGradesArray)
+      }
+
+      switchToStatuses() {
+        this.setState(this.studentStatusesArray)
+      }
+    
+  /**
+   * This function makes an asynchronous call to the getStudents function in the database and pulls
+   * all the students information.
+   * Then it builds a an array of students and grades objects, and an array of students and submission
+   * statuses objects which are then set in state to feed the data property of the table.
+   * OnClick method changes the state's array from assignments to submision statuses.
+   */
     componentDidMount(){
         const rootRef = firebase.database().ref().child('react')
         const studentRef = rootRef.child('students')
         console.log(studentRef)
         //holds key value pairs of student and grades
+        const studentArray = []
+        // initializing arrays to hold grades and statuses objects
         let studentAndGrades = Object()
         let studentAndStatus = Object()
-        const studentArray = []
         //building student array
         //first get the students from the database
         //then build a dicionary with each student id, name, grades
@@ -41,7 +58,8 @@ class ViewByAssignment extends Component {
             //array to hold submission status
             var statuses = []
 
-           
+            // iteratinng trough each student's submission if exists, 
+            // adding submission status the  statuses array
             for(var j = 0; j< 9; j++){
               if(!students[id].submissions[j]){
                 statuses.push("NONE");
@@ -57,19 +75,19 @@ class ViewByAssignment extends Component {
               }
             }
 
-            
+            // iteratinng trough each student's submission if exists, 
+            // adding submission grade the  grades array
             for(var i =0; i< 9; i++){//students.submissions){
                 if(!students[id].submissions[i]){
                   grades.push("none");
-                  //statuses.push("NO DUE DATE")
-
+                  
                 } else if(!students[id].submissions[i].grade){ 
                   grades[i] ="none"
                 }else{
                   grades.push(students[id].submissions[i].grade)
                 }
             }  
-     
+            //student object that holds grades only
             studentAndGrades = {
               id: students[id].id,
               name: students[id].name,
@@ -85,8 +103,9 @@ class ViewByAssignment extends Component {
             }
             //prints in console
             console.log("studentAndGrades: ", studentAndGrades )
-            //studentArray.push(studentAndGrades);
-          
+            //adding each student object to the array of grades
+            this.studentGradesArray.push(studentAndGrades);
+          //student object that holds submission statuses only
             studentAndStatus = {
               id: students[id].id,
               name: students[id].name,
@@ -100,21 +119,56 @@ class ViewByAssignment extends Component {
               a8: statuses[7],
               a9: statuses[8]
             }
-
-            studentArray.push(studentAndStatus)
+            //adding each student object to the array of statuses
+            this.studentStatusesArray.push(studentAndStatus)
           }
-        
+          //setting the state in this case to statuses
           this.setState({
-            students:  studentArray
+            students:  this.studentStatusesArray
          });
+          //checking
            console.log("StudentArray: ", studentArray);            
       });
 
-      
-
+      //checking
      console.log("studentAndGrades", studentArray)
      console.log("State: ", this.state.students)
     }
+
+  /**
+   * Changes the status on a lick o the tab. By changing the status, it changes the data array that feeds the 
+   * data property of React-Table .
+   */  
+  
+   
+   /*
+  onClick = (e) => {
+    switch(e.target.id){
+        case "Grades":
+            //const assignmentSorted = sortDetails.sortAssignments(this.state.assignments);
+            const studentGradesArray = //need to find a way to transfer from componentDidMount.
+            this.setState({students: studentGradesArray});
+            break;
+        case "Submissions":
+            const studentStatusesArray = //need to link 
+            this.setState({students: studentStatusesArray});
+            break;
+         case "Feedback":
+           
+            break;
+         case "% Feedback read":
+           
+            break;
+         case "% Feedback responded to":
+           
+            break;
+            default: 
+              this.setState({students: studentGradesArray})
+         
+    }
+ }
+ */
+
 
     renderEditable(cellInfo) {
         return (
@@ -144,15 +198,13 @@ class ViewByAssignment extends Component {
     }
     
   
-      /**
-     * Builds and 2D array of the submission status per student
+    /**
+     * Renders a table based on columns and data
      */
-
     render() {
         const ReactTableFixedColumns = withFixedColumns(ReactTable);
        
-        
-
+        //columns for the table
         const columns = [
             {
                 Header: "Student ID",
@@ -243,7 +295,7 @@ class ViewByAssignment extends Component {
                 }
             }
         ]
-
+      //this is a representation of how the student data is structured in the database.js  
       const studentMock = [
        //------Student 1 Maria-------
         {
@@ -356,7 +408,7 @@ class ViewByAssignment extends Component {
         return(
           <ReactTableFixedColumns className="databaseStyle"
             columns={columns}
-            
+            // sets the data that builds table rows
             data={this.state.students}
             showPagination={false}
             filterable
