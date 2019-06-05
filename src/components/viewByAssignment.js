@@ -7,7 +7,7 @@ import 'react-table-hoc-fixed-columns/lib/styles.css';
 import '../css/database.css';
 import { getStudents} from '../Data/database';
 import * as firebase from 'firebase';
-import testData from '../mock-data/students.json'
+import testDataFromJsomFile from '../mock-data/students.json'
 
 /**
  * This component creates a react-table with students arrays as rows and assignments as columns
@@ -23,14 +23,20 @@ class ViewByAssignment extends Component {
          this.renderEditable = this.renderEditable.bind(this);
          this.studentGradesArray = []
          this.studentStatusesArray = []
+
+          // in your constructor, add this binding
+      //this.updatePostion = this.updatePostion.bind(this)
+        //this.switchToGrades = this.switchToGrades.bind(this);
       }
+      
       //switches state to grades
       switchToGrades() {
         this.setState({
-          //students: testData
-          students: this.studentGradesArray
+          //students: testDataFromJsomFile   - this works
+          students: this.studentGradesArray //doesn't work - builds empty rows
       });
     }
+    
       //switches state to submission statuses
       switchToStatuses() {
         this.setState(this.studentStatusesArray)
@@ -141,7 +147,12 @@ class ViewByAssignment extends Component {
       });
 
       
-
+      function switchToGrades() {
+        this.setState({
+          //students: testDataFromJsomFile   - this works
+          students: this.studentGradesArray //doesn't work - builds empty rows
+      });
+    }
       //checking
      console.log("studentAndGrades", studentArray)
      console.log("State: ", this.state.students)

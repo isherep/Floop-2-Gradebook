@@ -88,7 +88,7 @@ class Toggle extends Component {
                         </TabPanel>
                         <TabPanel style={{background: "#f2e6ff"}} onClick = {this.handleClickSubmissions}>
                             <ViewByAssignment ref = {this.assignmentView} />
-                            <button onClick = {this.handleClick}>HandlerClick Test</button>
+                            <button onClick = {this.handleClick}>HandlerClick</button>
                         </TabPanel>
                         <TabPanel style={{background: "#e6ffe6"}}>
                             <ViewByAssignment ref = {this.assignmentView} />
