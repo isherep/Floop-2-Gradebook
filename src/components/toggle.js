@@ -14,7 +14,7 @@ class Toggle extends Component {
 
     constructor(props) {
         super(props);
-        //creating a refference of ViewByAssignment component in the Toggle view 
+        //creating a reference of ViewByAssignment component in the Toggle view 
         this.assignmentView = React.createRef()
         //contrils the toggle between view by assignemtn and Metric View
         //does not control table data, table data is set in ViewByAssignment
@@ -23,18 +23,23 @@ class Toggle extends Component {
         }
        
      }
-        /*
-     onClick = () => {
-        this.ViewByAssignment.switchToGrades();
-      }
-        */
+    
+    
       /**
        * Method to change the state of child view by assignment component
        */
       handleClick = () =>{
-          //thows an error - cannot read property current.switchToGrades() of  null
+          
           this.assignmentView.current.switchToGrades()
       }
+
+/**
+       * Method to change the state of child view by assignment component to submissions
+       */
+      handleClickSubmissions = () =>{
+        //thows an error - cannot read property current.switchToGrades() of  null
+        this.assignmentView.current.switchToStatuses()
+    }
 
      // The parent component can manage child state passing a prop to child and 
      // the child convert this prop in state using componentWillReceiveProps.
@@ -81,17 +86,18 @@ class Toggle extends Component {
                         <TabPanel style={{background: "#ffe6ff"}} onClick={this.handleClick}>
                              <ViewByAssignment ref = {this.assignmentView} />                           
                         </TabPanel>
-                        <TabPanel style={{background: "#f2e6ff"}}>
-                            <ViewByAssignment/>
+                        <TabPanel style={{background: "#f2e6ff"}} onClick = {this.handleClickSubmissions}>
+                            <ViewByAssignment ref = {this.assignmentView} />
+                            <button onClick = {this.handleClick}>HandlerClick Test</button>
                         </TabPanel>
                         <TabPanel style={{background: "#e6ffe6"}}>
-                            <ViewByAssignment/>
+                            <ViewByAssignment ref = {this.assignmentView} />
                         </TabPanel>
                         <TabPanel style={{background: "#ffffe6"}}>
-                            <SumbmissionsTab/>
+                            <ViewByAssignment  ref = {this.assignmentView} />
                         </TabPanel>
                         <TabPanel style={{background: "#ffeecc"}}>
-                             <ViewByAssignment/>
+                             <ViewByAssignment ref = {this.assignmentView} />
                         </TabPanel>
                     </Tabs>
                 }
