@@ -35,6 +35,8 @@
     border-radius: 3% 0 0 3%;
     padding: 30px 20px;
     background: #7094db;
+   /*temporarily changing background to see where it ends*/
+   /*background: aqua;*/
 }
 
 .gradesTab:hover {
@@ -97,6 +99,15 @@
 
 .respondedTab:focus {
     background: #e580ff;
+}
+
+
+/*----Buttons that will overlay the tab*/
+
+button#GradesTab{
+    color: red;
+    background: #d2ff4d;
+    padding: 30px 20px;
 }
 
 @media (max-width: 768px){

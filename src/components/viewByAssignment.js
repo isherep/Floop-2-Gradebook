@@ -7,6 +7,7 @@ import 'react-table-hoc-fixed-columns/lib/styles.css';
 import '../css/database.css';
 import { getStudents} from '../Data/database';
 import * as firebase from 'firebase';
+import testDataFromJsomFile from '../mock-data/students.json'
 
 /**
  * This component creates a react-table with students arrays as rows and assignments as columns
@@ -19,17 +20,30 @@ class ViewByAssignment extends Component {
             students: [],
            // studentSubStatus: []
         }
-         this.renderEditable = this.renderEditable.bind(this);
+         //this.renderEditable = this.renderEditable.bind(this);
          this.studentGradesArray = []
-        this.studentStatusesArray = []
+         this.studentStatusesArray = []
+
+          // in your constructor, add this binding
+      //this.updatePostion = this.updatePostion.bind(this)
+        //this.switchToGrades = this.switchToGrades.bind(this);
       }
+      
       //switches state to grades
+      //changes only on a second click.
+      //Maybe need to use "componentDidUpdate- should be used instead to apply such logic in most cases.""
       switchToGrades() {
-        this.setState(this.studentAndGradesArray)
-      }
+        this.setState({
+          //students: testDataFromJsomFile   - this works
+          students: this.studentGradesArray //doesn't work - builds empty rows
+      });
+    }
+
       //switches state to submission statuses
       switchToStatuses() {
-        this.setState(this.studentStatusesArray)
+        this.setState({
+          students: this.studentStatusesArray
+        });
       }
     
   /**
@@ -62,15 +76,18 @@ class ViewByAssignment extends Component {
             // adding submission status the  statuses array
             for(var j = 0; j< 9; j++){
               if(!students[id].submissions[j]){
-                statuses.push("NONE");
+                statuses[j] = "-";
               } else if(!!students[id].submissions[j].status){
-                statuses[j] = "NO ASSIGNMENT ASSIGNED YET"
+                statuses[j] = "REVIEWING"
               } else if(!students[id].submissions[j].dueDate){
-                statuses[j] = "NO DUE DATE"
+                statuses[j] = "NEEDS DUE DATE"
               } else if (!students[id].submissions[j].submissionDate) {
                 statuses[j] = "NOT SUBMITTED";
+              //} else if(students[id].submissions[j].submissionDate.nanoseconds > students[id].submissions[j].assignment[j].dueDate.nanoseconds){
+                //statuses[j] = "LATE";
               } else {
                 statuses[j] = students[id].submissions[j].status;
+              
               
               }
             }
@@ -79,10 +96,12 @@ class ViewByAssignment extends Component {
             // adding submission grade the  grades array
             for(var i =0; i< 9; i++){//students.submissions){
                 if(!students[id].submissions[i]){
-                  grades.push("n/a");
+                  //the symbol inside parenthesis, is what will be showing in a student/assignment cell
+                  // you can change it to anything you like
+                  grades.push("-");
                   
                 } else if(!students[id].submissions[i].grade){ 
-                  grades[i] ="not graded"
+                  grades[i] ="GRADING"
                 }else{
                   grades.push(students[id].submissions[i].grade)
                 }
@@ -131,12 +150,33 @@ class ViewByAssignment extends Component {
            console.log("StudentArray: ", studentArray);            
       });
 
+      /*
+      function switchToGrades() {
+        this.setState({
+          //students: testDataFromJsomFile   - this works
+          students: this.studentGradesArray //doesn't work - builds empty rows
+      });
+    }*/
       //checking
      console.log("studentAndGrades", studentArray)
      console.log("State: ", this.state.students)
     }
+/*
+    componentDidUpdate = (prevProps, prevState) => {
+     // let width = ReactDOM.findDOMNode(this).parentNode.offsetWidth
+     //if (prevState && prevState.width !== width) {
+      //this.setState({ width })
+    //}
 
-  
+      let studentGradesArray = this.componentDidMount.studentGradesArray
+      if (prevState && prevState.students !== studentGradesArray) {
+        this.setState({ 
+          students: studentGradesArray 
+        })
+      }
+    }
+
+  */
     renderEditable(cellInfo) {
         return (
           <div

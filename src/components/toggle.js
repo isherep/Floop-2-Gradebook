@@ -14,7 +14,7 @@ class Toggle extends Component {
 
     constructor(props) {
         super(props);
-        //creating a refference of ViewByAssignment component in the Toggle view 
+        //creating a reference of ViewByAssignment component in the Toggle view 
         this.assignmentView = React.createRef()
         //contrils the toggle between view by assignemtn and Metric View
         //does not control table data, table data is set in ViewByAssignment
@@ -23,18 +23,37 @@ class Toggle extends Component {
         }
        
      }
-        /*
-     onClick = () => {
-        this.ViewByAssignment.switchToGrades();
-      }
-        */
+    /* Does not change anything
+     componentDidUpdate = (prevProps, prevState) => {
+        // let width = ReactDOM.findDOMNode(this).parentNode.offsetWidth
+        //if (prevState && prevState.width !== width) {
+         //this.setState({ width })
+       //}
+   
+         let studentGradesArray = this.assignmentView.componentDidMount.studentGradesArray
+         if (prevState && prevState.students !== studentGradesArray) {
+            this.assignmentView.this.setState({ 
+             students: studentGradesArray 
+           })
+         }
+       }
+    */
+    
       /**
        * Method to change the state of child view by assignment component
        */
-      handleClick = () =>{
-          //thows an error - cannot read property current.switchToGrades() of  null
+      handleClickGrades = () =>{
+          
           this.assignmentView.current.switchToGrades()
       }
+
+/**
+       * Method to change the state of child view by assignment component to submissions
+       */
+      handleClickSubmissions = () =>{
+        //thows an error - cannot read property current.switchToGrades() of  null
+        this.assignmentView.current.switchToStatuses()
+    }
 
      // The parent component can manage child state passing a prop to child and 
      // the child convert this prop in state using componentWillReceiveProps.
@@ -71,27 +90,28 @@ class Toggle extends Component {
                         {/* toggle tabs on a left*/}
                         <TabList className="tabList">
                             {/* Submission tab*/}
-                            <Tab className="subTab">Submissions</Tab>
+                            <Tab className="subTab" onClick = {this.handleClickSubmissions}>Submissions</Tab>
                             {/* Grades tab - onClick changes data from submission statuses to grades*/}
-                            <Tab className="gradesTab">Grades</Tab>
+                            <Tab className="gradesTab" onClick = {this.handleClickGrades}>Grades</Tab>
                             <Tab className="feedbackTab">Feedback</Tab>
                             <Tab className="readTab">%Feedback Read</Tab>
                             <Tab className="respondedTab">%Feedback Responded</Tab>
                         </TabList>
-                        <TabPanel style={{background: "#ffe6ff"}} onClick={this.handleClick}>
+                        <TabPanel style={{background: "#ffe6ff"}}>
                              <ViewByAssignment ref = {this.assignmentView} />                           
                         </TabPanel>
                         <TabPanel style={{background: "#f2e6ff"}}>
-                            <ViewByAssignment/>
+                            <ViewByAssignment ref = {this.assignmentView} />
+                            
                         </TabPanel>
                         <TabPanel style={{background: "#e6ffe6"}}>
-                            <ViewByAssignment/>
+                            <ViewByAssignment ref = {this.assignmentView} />
                         </TabPanel>
                         <TabPanel style={{background: "#ffffe6"}}>
-                            <SumbmissionsTab/>
+                            <ViewByAssignment  ref = {this.assignmentView} />
                         </TabPanel>
                         <TabPanel style={{background: "#ffeecc"}}>
-                             <ViewByAssignment/>
+                             <ViewByAssignment ref = {this.assignmentView} />
                         </TabPanel>
                     </Tabs>
                 }
