@@ -20,7 +20,7 @@ class ViewByAssignment extends Component {
             students: [],
            // studentSubStatus: []
         }
-         this.renderEditable = this.renderEditable.bind(this);
+         //this.renderEditable = this.renderEditable.bind(this);
          this.studentGradesArray = []
          this.studentStatusesArray = []
 
@@ -30,16 +30,20 @@ class ViewByAssignment extends Component {
       }
       
       //switches state to grades
+      //changes only on a second click.
+      //Maybe need to use "componentDidUpdate- should be used instead to apply such logic in most cases.""
       switchToGrades() {
         this.setState({
           //students: testDataFromJsomFile   - this works
           students: this.studentGradesArray //doesn't work - builds empty rows
       });
     }
-    
+
       //switches state to submission statuses
       switchToStatuses() {
-        this.setState(this.studentStatusesArray)
+        this.setState({
+          students: this.studentStatusesArray
+        });
       }
     
   /**
@@ -146,19 +150,33 @@ class ViewByAssignment extends Component {
            console.log("StudentArray: ", studentArray);            
       });
 
-      
+      /*
       function switchToGrades() {
         this.setState({
           //students: testDataFromJsomFile   - this works
           students: this.studentGradesArray //doesn't work - builds empty rows
       });
-    }
+    }*/
       //checking
      console.log("studentAndGrades", studentArray)
      console.log("State: ", this.state.students)
     }
+/*
+    componentDidUpdate = (prevProps, prevState) => {
+     // let width = ReactDOM.findDOMNode(this).parentNode.offsetWidth
+     //if (prevState && prevState.width !== width) {
+      //this.setState({ width })
+    //}
 
-  
+      let studentGradesArray = this.componentDidMount.studentGradesArray
+      if (prevState && prevState.students !== studentGradesArray) {
+        this.setState({ 
+          students: studentGradesArray 
+        })
+      }
+    }
+
+  */
     renderEditable(cellInfo) {
         return (
           <div
