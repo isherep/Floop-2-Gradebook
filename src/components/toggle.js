@@ -14,14 +14,14 @@ class Toggle extends Component {
 
     constructor(props) {
         super(props);
-        //creating a reference of ViewByAssignment component in the Toggle view 
+        //creating a reference of ViewByAssignment component in the Toggle view
         this.assignmentView = React.createRef()
         //contrils the toggle between view by assignemtn and Metric View
         //does not control table data, table data is set in ViewByAssignment
         this.state = {
             on: true,
         }
-       
+
      }
     /* Does not change anything
      componentDidUpdate = (prevProps, prevState) => {
@@ -29,21 +29,21 @@ class Toggle extends Component {
         //if (prevState && prevState.width !== width) {
          //this.setState({ width })
        //}
-   
+
          let studentGradesArray = this.assignmentView.componentDidMount.studentGradesArray
          if (prevState && prevState.students !== studentGradesArray) {
-            this.assignmentView.this.setState({ 
-             students: studentGradesArray 
+            this.assignmentView.this.setState({
+             students: studentGradesArray
            })
          }
        }
     */
-    
+
       /**
        * Method to change the state of child view by assignment component
        */
       handleClickGrades = () =>{
-          
+
           this.assignmentView.current.switchToGrades()
       }
 
@@ -55,7 +55,7 @@ class Toggle extends Component {
         this.assignmentView.current.switchToStatuses()
     }
 
-     // The parent component can manage child state passing a prop to child and 
+     // The parent component can manage child state passing a prop to child and
      // the child convert this prop in state using componentWillReceiveProps.
      componentWillReceiveProps(props) {
         this.setState({ open: props.drawerOpen })
@@ -67,11 +67,11 @@ class Toggle extends Component {
        })
    }
 
-   
+
     render() {
         return (
             <div class="toggleButton">
-                <Flexbox flexDirection="row" className="subtoggleButton">
+                <Flexbox flexDirection="row" className="subtoggleButton" style={{color: 'white'}}>
                 <li><b>View by Assignment</b></li>
                 <li>
                 <label class="switch">
@@ -98,11 +98,11 @@ class Toggle extends Component {
                             <Tab className="respondedTab">%Feedback Responded</Tab>
                         </TabList>
                         <TabPanel style={{background: "#ffe6ff"}}>
-                             <ViewByAssignment ref = {this.assignmentView} />                           
+                             <ViewByAssignment ref = {this.assignmentView} />
                         </TabPanel>
                         <TabPanel style={{background: "#f2e6ff"}}>
                             <ViewByAssignment ref = {this.assignmentView} />
-                            
+
                         </TabPanel>
                         <TabPanel style={{background: "#e6ffe6"}}>
                             <ViewByAssignment ref = {this.assignmentView} />
