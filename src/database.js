@@ -22,6 +22,8 @@ const config = {
     return students.length
   }
 
+
+
 function getStudents() {
 
   db.collection('Databases').doc('Dev_Database').collection("Users").where("Role", "==", "Student")
@@ -42,4 +44,3 @@ getStudents()
 
 
 export default students;
-

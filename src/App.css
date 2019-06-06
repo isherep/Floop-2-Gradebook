@@ -2,17 +2,19 @@
     margin: 0;
     padding: 0;
   }
-  
+
   .App {
     padding: 10px;
     margin: 0 auto;
-    background: #e6ecff;
   }
-  
+
+  html, body{
+    height: 100%;
+    background-color: #077169;
+    background-image: linear-gradient(#077169, #86D3EB);
+  }
+
   .App h1 {
     padding-bottom: 15px;
+    color: #fff;
   }
-  
-  
-  
-  
