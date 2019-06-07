@@ -15,7 +15,7 @@ import testDataFromJsomFile from '../mock-data/students.json'
 class ViewByAssignment extends Component {
     constructor(props) {
         super(props);
-    
+
         this.state = {
             students: [],
            // studentSubStatus: []
@@ -28,7 +28,7 @@ class ViewByAssignment extends Component {
       //this.updatePostion = this.updatePostion.bind(this)
         //this.switchToGrades = this.switchToGrades.bind(this);
       }
-      
+
       //switches state to grades
       //changes only on a second click.
       //Maybe need to use "componentDidUpdate- should be used instead to apply such logic in most cases.""
@@ -45,7 +45,7 @@ class ViewByAssignment extends Component {
           students: this.studentStatusesArray
         });
       }
-    
+
   /**
    * This function makes an asynchronous call to the getStudents function in the database and pulls
    * all the students information.
@@ -65,14 +65,14 @@ class ViewByAssignment extends Component {
         //building student array
         //first get the students from the database
         //then build a dicionary with each student id, name, grades
-        getStudents().then((students) => {        
+        getStudents().then((students) => {
           for(var id in students) {
             //array to hold grades
             var grades = []
             //array to hold submission status
             var statuses = []
 
-            // iteratinng trough each student's submission if exists, 
+            // iteratinng trough each student's submission if exists,
             // adding submission status the  statuses array
             for(var j = 0; j< 9; j++){
               if(!students[id].submissions[j]){
@@ -87,25 +87,25 @@ class ViewByAssignment extends Component {
                 //statuses[j] = "LATE";
               } else {
                 statuses[j] = students[id].submissions[j].status;
-              
-              
+
+
               }
             }
 
-            // iteratinng trough each student's submission if exists, 
+            // iteratinng trough each student's submission if exists,
             // adding submission grade the  grades array
             for(var i =0; i< 9; i++){//students.submissions){
                 if(!students[id].submissions[i]){
                   //the symbol inside parenthesis, is what will be showing in a student/assignment cell
                   // you can change it to anything you like
                   grades.push("-");
-                  
-                } else if(!students[id].submissions[i].grade){ 
+
+                } else if(!students[id].submissions[i].grade){
                   grades[i] ="GRADING"
                 }else{
                   grades.push(students[id].submissions[i].grade)
                 }
-            }  
+            }
             //student object that holds grades only
             studentAndGrades = {
               id: students[id].id,
@@ -147,7 +147,7 @@ class ViewByAssignment extends Component {
             students:  this.studentStatusesArray
          });
           //checking
-           console.log("StudentArray: ", studentArray);            
+           console.log("StudentArray: ", studentArray);
       });
 
       /*
@@ -170,8 +170,8 @@ class ViewByAssignment extends Component {
 
       let studentGradesArray = this.componentDidMount.studentGradesArray
       if (prevState && prevState.students !== studentGradesArray) {
-        this.setState({ 
-          students: studentGradesArray 
+        this.setState({
+          students: studentGradesArray
         })
       }
     }
@@ -189,7 +189,7 @@ class ViewByAssignment extends Component {
             }}
 
             dangerouslySetInnerHTML={{
-              __html: 
+              __html:
               //this.state.studentsAsync[cellInfo.index][cellInfo.column.id]
               this.state.students[cellInfo.index][cellInfo.column.id]
             }}
@@ -203,14 +203,14 @@ class ViewByAssignment extends Component {
         })
         console.log("index", index)
     }
-    
-  
+
+
     /**
      * Renders a table based on columns and data
      */
     render() {
         const ReactTableFixedColumns = withFixedColumns(ReactTable);
-       
+
         //columns for the table
         const columns = [
             {
@@ -291,18 +291,18 @@ class ViewByAssignment extends Component {
                 Header: "Actions",
                 Cell: props => {
                     return (
-                        <button 
+                        <button
                             onClick={() => {
                                 this.deleteColumn(props.original.id)
                         }}
                         >
                             Delete
                         </button>
-                    )  
+                    )
                 }
             }
         ]
-      //this is a representation of how the student data is structured in the database.js  
+      //this is a representation of how the student data is structured in the database.js
       const studentMock = [
        //------Student 1 Maria-------
         {
@@ -311,7 +311,7 @@ class ViewByAssignment extends Component {
           "submissions": [
               //first submission
             {
-          
+
                 "assignment": {
                     "id": "B2F820F7-561A-4244-9D55",
                     "assing name": "gabe test",
@@ -320,11 +320,11 @@ class ViewByAssignment extends Component {
                   "nanosecnds": 324212,
                   "seconds": 345352
                 },
-                                   
+
                 "grade": "AB",
                 "id": "-LKUSh9s_pAgE2RdwWrb",
                 "status": "LATE",
-                
+
                 "submissionDate": {
                   "nanoseconds": 673000000,
                   "seconds": 1534905303
@@ -342,12 +342,12 @@ class ViewByAssignment extends Component {
                     "nanosecnds": 324212,
                     "seconds": 345352
                   },
-              
-                  
+
+
               "grade": "AB",
               "id": "-LKUSh9s_pAgE2RdwWrb",
               "status": "LATE",
-              
+
               "submissionDate": {
                 "nanoseconds": 673000000,
                 "seconds": 1534905303
@@ -373,12 +373,12 @@ class ViewByAssignment extends Component {
                     "nanosecnds": 325432,
                     "seconds": 34457
                   },
-              
-                  
+
+
               "grade": "AB",
               "id": "-LKUSh9s_pAgE2RdwWrb",
               "status": "LATE",
-              
+
               "submissionDate": {
                 "nanoseconds": 673000000,
                 "seconds": 1534905303
@@ -394,21 +394,21 @@ class ViewByAssignment extends Component {
                   "seconds": 345352
                 },
             },
-                
+
             "grade": "AB",
             "id": "-LKUSh9s_pAgE2RdwWrb",
             "status": "LATE",
-            
+
             "submissionDate": {
               "nanoseconds": 673000000,
               "seconds": 1534905303
             }
           }
           ]
-        }      
+        }
   ]
 
-  
+
 
   //The goal is to build the data structure like this for the submission status
    // console.log("State ", this.state)
@@ -421,13 +421,13 @@ class ViewByAssignment extends Component {
             filterable
             defaultPageSize={25}
             >
-            
+
             {(state, filteredData, instance) => {
               this.ReactTableFixedColumns = state.pageRows.map(student => {return student._original});
                 return (
-                  <div>
+                  <div className="back">
                     {filteredData()}
-                    <ExportToExcel studentsAsync={this.ReactTableFixedColumns}/> 
+                    <ExportToExcel studentsAsync={this.ReactTableFixedColumns}/>
                   </div>
                 )
             }}
@@ -436,6 +436,6 @@ class ViewByAssignment extends Component {
     }
 
 
-    
+
 }
 export default ViewByAssignment;
