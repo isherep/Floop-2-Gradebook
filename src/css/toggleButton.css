@@ -57,7 +57,7 @@
   }
 
   input:checked + .slider {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #077169;
   }
 
   input:focus + .slider {
