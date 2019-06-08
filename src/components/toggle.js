@@ -89,56 +89,56 @@ class Toggle extends Component {
                         </div>
                         {/* toggle tabs on a left*/}
                         <TabList className="tabList">
-                            {/* Submission tab*/}
-                            <Tab className="subTab" onClick = {this.handleClickSubmissions}>Submissions</Tab>
-                            {/* Grades tab - onClick changes data from submission statuses to grades*/}
-                            <Tab className="gradesTab" onClick = {this.handleClickGrades}>Grades</Tab>
-                            <Tab className="feedbackTab">Feedback</Tab>
-                            <Tab className="readTab">%Feedback Read</Tab>
-                            <Tab className="respondedTab">%Feedback Responded</Tab>
+                            <Tab className="tab" onClick = {this.handleClickSubmissions}>Submissions</Tab>
+                            <Tab className="tab" onClick = {this.handleClickGrades}>Grades</Tab>
+                            <Tab className="tab">Feedback</Tab>
+                            <Tab className="tab">%Feedback Read</Tab>
+                            <Tab className="tab">%Feedback Responded</Tab>
                         </TabList>
-                        <TabPanel style={{background: "#ffe6ff"}}>
+                        <TabPanel>
                              <ViewByAssignment ref = {this.assignmentView} />
                         </TabPanel>
-                        <TabPanel style={{background: "#f2e6ff"}}>
-                            <ViewByAssignment ref = {this.assignmentView} />
-
-                        </TabPanel>
-                        <TabPanel style={{background: "#e6ffe6"}}>
+                        <TabPanel>
                             <ViewByAssignment ref = {this.assignmentView} />
                         </TabPanel>
-                        <TabPanel style={{background: "#ffffe6"}}>
+                        <TabPanel>
+                            <ViewByAssignment ref = {this.assignmentView} />
+                        </TabPanel>
+                        <TabPanel>
                             <ViewByAssignment  ref = {this.assignmentView} />
                         </TabPanel>
-                        <TabPanel style={{background: "#ffeecc"}}>
+                        <TabPanel>
                              <ViewByAssignment ref = {this.assignmentView} />
                         </TabPanel>
                     </Tabs>
                 }
 
                 {!this.state.on &&
-
                     <Tabs className="tabs">
                     <TabList className="tabList">
-                        <Tab className="subTab">Assignment 1</Tab>
-                        <Tab className="gradesTab">Assignment 2</Tab>
-                        <Tab className="feedbackTab">Assignment 3</Tab>
-                        <Tab className="readTab">Assignment 4</Tab>
-                        <Tab className="respondedTab">Assignment 5</Tab>
+                        <Tab className="tab">Assignment 1</Tab>
+                        <Tab className="tab">Assignment 2</Tab>
+                        <Tab className="tab">Assignment 3</Tab>
+                        <Tab className="tab">Assignment 4</Tab>
+                        <Tab className="tab">Assignment 5</Tab>
+                        <Tab className="tab">Assignment 6</Tab>
                     </TabList>
-                    <TabPanel style={{background: "#57D194"}}>
+                    <TabPanel>
                         <ViewByMetric/>
                     </TabPanel>
-                    <TabPanel style={{background: "#57D194"}}>
+                    <TabPanel>
                         <ViewByMetric/>
                     </TabPanel>
-                    <TabPanel style={{background: "#57D194"}}>
+                    <TabPanel>
                         <ViewByMetric/>
                     </TabPanel>
-                    <TabPanel style={{background: "#57D194"}}>
+                    <TabPanel>
                         <ViewByMetric/>
                     </TabPanel>
-                    <TabPanel style={{background: "#57D194"}}>
+                    <TabPanel>
+                        <ViewByMetric/>
+                    </TabPanel>
+                    <TabPanel>
                         <ViewByMetric/>
                     </TabPanel>
                     </Tabs>
