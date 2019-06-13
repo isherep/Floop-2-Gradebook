@@ -82,7 +82,7 @@ class ViewByAssignment extends Component {
 
             // iteratinng trough each student's submission if exists, 
             // adding submission status the  statuses array
-            for(var j = 0; j< 9; j++){
+            for(var j = 0; j< 14; j++){
               if(!students[id].submissions[j]){
                 statuses[j] = "-";
               } else if(!!students[id].submissions[j].status){
@@ -102,7 +102,7 @@ class ViewByAssignment extends Component {
 
             // iteratinng trough each student's submission if exists, 
             // adding submission grade the  grades array
-            for(var i =0; i< 9; i++){//students.submissions){
+            for(var i =0; i< 14; i++){//students.submissions){
                 if(!students[id].submissions[i]){
                   //the symbol inside parenthesis, is what will be showing in a student/assignment cell
                   // you can change it to anything you like
@@ -129,7 +129,11 @@ class ViewByAssignment extends Component {
               a6: grades[5],
               a7: grades[6],
               a8: grades[7],
-              a9: grades[8]
+              a9: grades[8],
+              a10: grades[9],
+              a11: grades[10],
+              a12: grades[11],
+              a13: grades[12]
             }
             //prints in console
             console.log("studentAndGrades: ", studentAndGrades )
@@ -147,7 +151,11 @@ class ViewByAssignment extends Component {
               a6: statuses[5],
               a7: statuses[6],
               a8: statuses[7],
-              a9: statuses[8]
+              a9: statuses[8],
+              a10: statuses[9],
+              a11: statuses[10],
+              a12: statuses[11],
+              a13: statuses[12]
             }
             //adding each student object to the array of statuses
             this.studentStatusesArray.push(studentAndStatus)
@@ -221,68 +229,72 @@ class ViewByAssignment extends Component {
                 minWidth: 200
             },
             {
-                Header: this.assignmentNames[0],//"Assignment 1",
-              //  id: "ass1",
-                accessor: "a1",
-               // Cell: this.renderEditable,
+                Header: this.assignmentNames[0],//"Assignment 1",            
+                accessor: "a1",              
                 minWidth: 150
             },
             {
                 Header: this.assignmentNames[1],//"Assignment 2",
-                //id: "ass2",
                 accessor: "a2",
-                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: this.assignmentNames[2],
-              //  id: "ass3",
                 accessor: "a3",
-               // Cell: this.renderEditable,
                 minWidth: 150
             },
             {
-                Header: this.assignmentNames[2],
-                //id: "ass4",
+                Header: this.assignmentNames[3],
                 accessor: "a4",
-                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
-                Header: this.assignmentNames[2],
-                //id: "ass5",
+                Header: this.assignmentNames[4],
                 accessor: "a5",
-                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
-                Header: this.assignmentNames[2],
-                //id: "ass6",
+                Header: this.assignmentNames[5],
                 accessor: "a6",
-                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
-                Header: this.assignmentNames[2],
-               // id: "ass7",
+                Header: this.assignmentNames[6],
                 accessor: "a7",
-                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
-                Header: this.assignmentNames[2],
-                //id: "ass8",
+                Header: this.assignmentNames[7],
                 accessor: "a8",
-                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
-                Header: this.assignmentNames[2],
-                //id: "ass9",
+                Header: this.assignmentNames[8],
                 accessor: "a9",
                 //Cell: this.renderEditable,
                 minWidth: 150,
             },
+            {
+              Header: this.assignmentNames[9],
+              accessor: "a9",
+              minWidth: 150,
+          },
+          {
+            Header: this.assignmentNames[11],
+            accessor: "a9",
+            minWidth: 150,
+        },
+        {
+          Header: this.assignmentNames[12],
+          accessor: "a9",
+          minWidth: 150,
+      },
+      {
+        Header: this.assignmentNames[13],
+        accessor: "a9",
+        minWidth: 150,
+    },
+    
             {
                 Header: "Actions",
                 Cell: props => {
