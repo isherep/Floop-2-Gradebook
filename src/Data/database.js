@@ -120,6 +120,7 @@ const getStudents = async () => {
           submission.feedback = "No Feedback";
       } else {
         submission.feedback = conversations[submisionDocument.id].data().Comment_Preview
+        console.log("Submissions feedback", submission.feedback)
       }
 
       
