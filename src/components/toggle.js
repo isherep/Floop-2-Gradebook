@@ -55,6 +55,10 @@ class Toggle extends Component {
         this.assignmentView.current.switchToStatuses()
     }
 
+    handleClickFeedback = () =>{
+        this.assignmentView.current.switchToFeedback()
+    }
+
      // The parent component can manage child state passing a prop to child and
      // the child convert this prop in state using componentWillReceiveProps.
      componentWillReceiveProps(props) {
@@ -91,7 +95,7 @@ class Toggle extends Component {
                         <TabList className="tabList">
                             <Tab className="tab" onClick = {this.handleClickSubmissions}>Submissions</Tab>
                             <Tab className="tab" onClick = {this.handleClickGrades}>Grades</Tab>
-                            <Tab className="tab">Feedback</Tab>
+                            <Tab className="tab" onClick = {this.handleClickFeedback}>Feedback</Tab>
                             <Tab className="tab">%Feedback Read</Tab>
                             <Tab className="tab">%Feedback Responded</Tab>
                         </TabList>

@@ -120,7 +120,7 @@ const getStudents = async () => {
           submission.feedback = "No Feedback";
       } else {
         submission.feedback = conversations[submisionDocument.id].data().Comment_Preview
-        console.log("Submissions feedback", submission.feedback)
+        //console.log("Submissions feedback", submission.feedback)
       }
 
       
@@ -132,13 +132,6 @@ const getStudents = async () => {
         const student = students[ownerId];
           student.submissions.push(submission)
         });
-
-      //----------CURRENT DICTIONARY WORKING ON---------------------
-      //this part returns undeffined fields in the console, need to find other way
-      //submissionStatus[assignmentDoc] = {
-       // assignDate: assignmentDoc.data().Date_Due,
-        //submitedDate: assignment.submissionDate,  
-      //}
 
     });
 
