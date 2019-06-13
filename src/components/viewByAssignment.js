@@ -229,94 +229,69 @@ class ViewByAssignment extends Component {
                 minWidth: 200
             },
             {
-                Header: this.assignmentNames[0],//"Assignment 1",
-              //  id: "ass1",
-                accessor: "a1",
-               // Cell: this.renderEditable,
+                Header: this.assignmentNames[0],//"Assignment 1",            
+                accessor: "a1",              
                 minWidth: 150
             },
             {
                 Header: this.assignmentNames[1],//"Assignment 2",
-                //id: "ass2",
                 accessor: "a2",
-                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: this.assignmentNames[2],
-              //  id: "ass3",
                 accessor: "a3",
-               // Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: this.assignmentNames[3],
-                //id: "ass4",
                 accessor: "a4",
-                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: this.assignmentNames[4],
-                //id: "ass5",
                 accessor: "a5",
-                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: this.assignmentNames[5],
-                //id: "ass6",
                 accessor: "a6",
-                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: this.assignmentNames[6],
-               // id: "ass7",
                 accessor: "a7",
-                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: this.assignmentNames[7],
-                //id: "ass8",
                 accessor: "a8",
-                //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
                 Header: this.assignmentNames[8],
-                //id: "ass9",
                 accessor: "a9",
                 //Cell: this.renderEditable,
                 minWidth: 150,
             },
             {
               Header: this.assignmentNames[9],
-              //id: "ass9",
               accessor: "a9",
-              //Cell: this.renderEditable,
               minWidth: 150,
           },
           {
             Header: this.assignmentNames[11],
-            //id: "ass9",
             accessor: "a9",
-            //Cell: this.renderEditable,
             minWidth: 150,
         },
         {
           Header: this.assignmentNames[12],
-          //id: "ass9",
           accessor: "a9",
-          //Cell: this.renderEditable,
           minWidth: 150,
       },
       {
         Header: this.assignmentNames[13],
-        //id: "ass9",
         accessor: "a9",
-        //Cell: this.renderEditable,
         minWidth: 150,
     },
     
