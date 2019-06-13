@@ -65,6 +65,10 @@ class ViewByAssignment extends Component {
         //building student array
         //first get the students from the database
         //then build a dicionary with each student id, name, grades
+
+
+        // Due this business logic in the controller
+        // 
         getStudents().then((students) => {        
           for(var id in students) {
             //array to hold grades
@@ -161,22 +165,7 @@ class ViewByAssignment extends Component {
      console.log("studentAndGrades", studentArray)
      console.log("State: ", this.state.students)
     }
-/*
-    componentDidUpdate = (prevProps, prevState) => {
-     // let width = ReactDOM.findDOMNode(this).parentNode.offsetWidth
-     //if (prevState && prevState.width !== width) {
-      //this.setState({ width })
-    //}
 
-      let studentGradesArray = this.componentDidMount.studentGradesArray
-      if (prevState && prevState.students !== studentGradesArray) {
-        this.setState({ 
-          students: studentGradesArray 
-        })
-      }
-    }
-
-  */
     renderEditable(cellInfo) {
         return (
           <div

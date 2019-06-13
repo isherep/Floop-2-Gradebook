@@ -36,12 +36,17 @@ const getStudents = async () => {
     const assignmentQuery = db.collection('Databases').doc('Dev_Database')
             .collection('Assignments').get();   
         
-         
+    const feedbackQuery = db.collection('Databases').doc('Dev_Database').collection('Conversations').get() 
+    
+    const feedbackQuerySnapshot = await feedbackQuery;
 
-         
+    const conversations = Object()
+
+    
 
     const studentQuerySnapshot = await studentQuery;
     //creating the dictionary that maps student to a submission
+
     const students = Object()
     studentQuerySnapshot.forEach((studentDocument) => {
       students[studentDocument.id] = {
@@ -66,9 +71,18 @@ const getStudents = async () => {
         id: assignmentDoc.id,
         dueDate: assignmentDoc.data().Date_Due,
         assignName: assignmentDoc.data().Description,
+       // title: 
         //subs:[]
       }
 
+    });
+
+    feedbackQuerySnapshot.forEach((conversationDocument) => {
+      conversations[conversationDocument.id] = {
+        id: conversationDocument.id,
+        feedback: conversationDocument.data().Comment_Preview
+
+      }
     });
 
     submissionsSnapshot.forEach((submisionDocument) => {
@@ -81,7 +95,12 @@ const getStudents = async () => {
         //need to find the assignment date
         submissionDate: submisionDocument.data().Date_Submitted,
         //subAssignID: submisionDocument.data().Assignment_ID
-        assignment: assignments[submisionDocument.data().Assignment_ID]
+        assignment: assignments[submisionDocument.data().Assignment_ID],
+        //------addig feedback---------
+        //feedback: [] //first comment will do into the feedback session
+        //feedback: "Nice",
+        //need to find submission id that belongs to the conversation object 
+        //feedback: conversations[submisionDocument.id].data().Comment_Preview
       };
       //will need to handle ass == null
       if(!submission.assignment){
@@ -94,6 +113,16 @@ const getStudents = async () => {
       } else { 
         submission.status = "ON TIME";
       }
+
+
+      //handle if the conversaation doesn't exist for a submission
+      if(!conversations[submisionDocument.id]){
+          submission.feedback = "No Feedback";
+      } else {
+        submission.feedback = conversations[submisionDocument.id].data().Comment_Preview
+      }
+
+      
 
 
       const ids = Object.keys(submisionDocument.data().Owner_IDs); 

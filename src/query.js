@@ -1,36 +1,16 @@
 import * as firebase from 'firebase';
 import 'firebase/firestore';
-
-firebase.initializeApp(config);
-
-let db = firebase.firestore();
-
-const getConversations = async () => {
-  const feedbackQuery = db.collection('Databases').doc('Dev_Database').collection('Conversations').get();
-}
-
-const conversations = Object()
-conversationsSnapshot.forEach((conversationDoc) => {
-  conversations[conversationDoc.id] = {
-    id: conversationDoc.id,
-    //now find the assignment its related to
-    submitID: conversationDoc.Submission_ID, //or whatever field there shows submission number
-    feedback: conversationDoc.Comment_Preview,
-  }
-  console.log("Conversations: ", conversations[conversation.id])
+/*
+var commentRef = firebase.firestore().collection('Databases').doc('Dev_Database').collection('Conversations').doc(Conversations.Submission_ID);
+commentRef.get()
+    .then(function(doc) {
+    if (doc.exists) {
+        console.log("Comment_Preview is:", doc.data().Comment_Preview);
+    } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+    }
+}).catch(function(error) {
+    console.log("Error getting document:", error);
 });
-
-function getCommentPreview() {
-
-  db.collection('Databases').doc('Dev_Database').collection("Conversations").where("Comment_Preview")
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        students.push(doc.data());
-      });
-    })
-}
-
-getCommentPreview()
-
-export default
+*/

@@ -4,111 +4,29 @@
     float: left;
 }
 
-.tabs {
-   background: #ccd9ff;
-   padding: 10px;
-}
-
-.subTab {
+.tab {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 10px;
     border-top: 1px solid black;
     border-left:  1px solid black;
     border-bottom: 1px solid black;
     border-right: none;
     border-radius: 3% 0 0 3%;
     padding: 30px 20px;
-    background: #7094db;
 }
 
-.subTab:focus {
-    background: #ff3333;
+.tab:hover {
+    background: rgba(0, 0, 2, .3);
 }
 
-.subTab:hover {
-    background: #ff3333;
+.tab:focus {
+    background: rgba(0, 0, 0, .45);
+    color: white;
 }
-
-.gradesTab {
-    border-top: 1px solid black;
-    border-left:  1px solid black;
-    border-bottom: 1px solid black;
-    border-right: none;
-    border-radius: 3% 0 0 3%;
-    padding: 30px 20px;
-    background: #7094db;
-   /*temporarily changing background to see where it ends*/
-   /*background: aqua;*/
-}
-
-.gradesTab:hover {
-    background: #ffa31a;
-}
-
-.gradesTab:focus {
-    background: #ffa31a;
-}
-
-.feedbackTab {
-    border-top: 1px solid black;
-    border-left:  1px solid black;
-    border-bottom: 1px solid black;
-    border-right: none;
-    border-radius: 3% 0 0 3%;
-    padding: 30px 20px;
-    background: #7094db;
-}
-
-.feedbackTab:hover {
-    background: #ffff4d;
-}
-
-.feedbackTab:focus {
-    background: #ffff4d;
-}
-
-.readTab {
-    border-top: 1px solid black;
-    border-left:  1px solid black;
-    border-bottom: 1px solid black;
-    border-right: none;
-    border-radius: 3% 0 0 3%;
-    padding: 25px 20px;
-    background: #7094db;
-}
-
-.readTab:hover {
-    background: #d2ff4d;
-}
-
-.readTab:focus {
-    background: #d2ff4d;
-}
-
-.respondedTab {
-    border-top: 1px solid black;
-    border-left:  1px solid black;
-    border-bottom: 1px solid black;
-    border-right: none;
-    border-radius: 3% 0 0 3%;
-    padding: 25px 20px;
-    background:  #7094db;
-}
-
-.respondedTab:hover {
-    background: #e580ff;
-}
-
-.respondedTab:focus {
-    background: #e580ff;
-}
-
 
 /*----Buttons that will overlay the tab*/
 
-button#GradesTab{
-    color: red;
-    background: #d2ff4d;
-    padding: 30px 20px;
-}
 
 @media (max-width: 768px){
   .tabList {
