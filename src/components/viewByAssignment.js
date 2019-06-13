@@ -228,56 +228,56 @@ class ViewByAssignment extends Component {
                 minWidth: 150
             },
             {
-                Header: "Assignment 2",
+                Header: this.assignmentNames[1],//"Assignment 2",
                 //id: "ass2",
                 accessor: "a2",
                 //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
-                Header: "Assignment 3",
+                Header: this.assignmentNames[2],
               //  id: "ass3",
                 accessor: "a3",
                // Cell: this.renderEditable,
                 minWidth: 150
             },
             {
-                Header: "Assignment 4",
+                Header: this.assignmentNames[2],
                 //id: "ass4",
                 accessor: "a4",
                 //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
-                Header: "Assignment 5",
+                Header: this.assignmentNames[2],
                 //id: "ass5",
                 accessor: "a5",
                 //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
-                Header: "Assignment 6",
+                Header: this.assignmentNames[2],
                 //id: "ass6",
                 accessor: "a6",
                 //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
-                Header: "Assignment 7",
+                Header: this.assignmentNames[2],
                // id: "ass7",
                 accessor: "a7",
                 //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
-                Header: "Assignment 8",
+                Header: this.assignmentNames[2],
                 //id: "ass8",
                 accessor: "a8",
                 //Cell: this.renderEditable,
                 minWidth: 150
             },
             {
-                Header: "Assignment 9",
+                Header: this.assignmentNames[2],
                 //id: "ass9",
                 accessor: "a9",
                 //Cell: this.renderEditable,
