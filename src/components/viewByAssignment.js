@@ -1,3 +1,5 @@
+
+    
 import React, {Component} from 'react';
 import ExportToExcel from './exportToExcel';
 import ReactTable from 'react-table';
@@ -23,6 +25,8 @@ class ViewByAssignment extends Component {
          //this.renderEditable = this.renderEditable.bind(this);
          this.studentGradesArray = []
          this.studentStatusesArray = []
+         //to hold columns names of assignemtns
+         this.assignmentNames = []
 
           // in your constructor, add this binding
       //this.updatePostion = this.updatePostion.bind(this)
@@ -107,7 +111,10 @@ class ViewByAssignment extends Component {
                 } else if(!students[id].submissions[i].grade){ 
                   grades[i] ="GRADING"
                 }else{
-                  grades.push(students[id].submissions[i].grade)
+                this.assignmentNames.push(students[id].submissions[i].assignment.assignName)
+                //prints OK
+                console.log("Assignment name ", this.assignmentNames);
+                grades[i] = students[id].submissions[i].grade
                 }
             }  
             //student object that holds grades only
@@ -214,7 +221,7 @@ class ViewByAssignment extends Component {
                 minWidth: 200
             },
             {
-                Header: "Assignment 1",
+                Header: this.assignmentNames[0],//"Assignment 1",
               //  id: "ass1",
                 accessor: "a1",
                // Cell: this.renderEditable,
