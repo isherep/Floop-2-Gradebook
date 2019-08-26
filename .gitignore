@@ -1,5 +1,7 @@
 #Firebase tools
-database.js
+/.Data/database.js
+/Data/database.js
+Database.js
 /.database.js
 
 /.vscode
