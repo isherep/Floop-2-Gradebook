@@ -25,6 +25,7 @@ class ViewByAssignment extends Component {
          //this.renderEditable = this.renderEditable.bind(this);
          this.studentGradesArray = []
          this.studentStatusesArray = []
+         this.submissionFeedbackArray = []
          //to hold columns names of assignemtns
          this.assignmentNames = []
 
@@ -50,6 +51,11 @@ class ViewByAssignment extends Component {
         });
       }
     
+      switchToFeedback() {
+        this.setState({
+          students: this.submissionFeedbackArray
+        });
+      }
   /**
    * This function makes an asynchronous call to the getStudents function in the database and pulls
    * all the students information.
@@ -66,6 +72,7 @@ class ViewByAssignment extends Component {
         // initializing arrays to hold grades and statuses objects
         let studentAndGrades = Object()
         let studentAndStatus = Object()
+        let submissionAndFeedback = Object()
         //building student array
         //first get the students from the database
         //then build a dicionary with each student id, name, grades
@@ -79,6 +86,7 @@ class ViewByAssignment extends Component {
             var grades = []
             //array to hold submission status
             var statuses = []
+            var feedback = []
 
             // iteratinng trough each student's submission if exists, 
             // adding submission status the  statuses array
@@ -107,15 +115,21 @@ class ViewByAssignment extends Component {
                   //the symbol inside parenthesis, is what will be showing in a student/assignment cell
                   // you can change it to anything you like
                   grades.push("-");
+                  feedback.push("-")
                   
                 } else if(!students[id].submissions[i].grade){ 
                   grades[i] ="GRADING"
-                }else{
+                } else if(!students[id].submissions[i].feedback){
+
+                  feedback[i] = "in progress"
+
+                } else{
                 this.assignmentNames.push(students[id].submissions[i].assignment.assignName)
                 //prints OK
                 console.log("Assignment name ", this.assignmentNames);
                 grades[i] = students[id].submissions[i].grade
-                }
+                feedback[i] = students[id].submissions[i].feedback
+              }
             }  
             //student object that holds grades only
             studentAndGrades = {
@@ -159,7 +173,29 @@ class ViewByAssignment extends Component {
             }
             //adding each student object to the array of statuses
             this.studentStatusesArray.push(studentAndStatus)
+
+
+            submissionAndFeedback = {
+              id: students[id].id,
+              name: students[id].name,
+              a1: feedback[0],
+              a2: feedback[1],
+              a3: feedback[2],
+              a4:feedback[3],
+              a5: feedback[4],
+              a6: feedback[5],
+              a7: feedback[6],
+              a8: feedback[7],
+              a9: feedback[8],
+              a10: feedback[9],
+              a11: feedback[10],
+              a12: feedback[11],
+              a13: feedback[12]
+            }
+            console.log("Feedback", submissionAndFeedback)
+            this.submissionFeedbackArray.push(submissionAndFeedback)
           }
+          console.log("Submission array", this.submissionFeedbackArray)
           //setting the state in this case to statuses
           // if you do students: studentStatusesArray the table will show grades
           this.setState({
