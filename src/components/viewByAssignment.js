@@ -115,10 +115,11 @@ class ViewByAssignment extends Component {
                   //the symbol inside parenthesis, is what will be showing in a student/assignment cell
                   // you can change it to anything you like
                   grades.push("-");
-                  feedback.push("-")
+                  //feedback.push("-")
                   
                 } else if(!students[id].submissions[i].grade){ 
                   grades[i] ="GRADING"
+                  feedback[i] = "in progress"
                 } else if(!students[id].submissions[i].feedback){
 
                   feedback[i] = "in progress"
