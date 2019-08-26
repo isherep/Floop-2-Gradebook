@@ -1,0 +1,42 @@
+.tabList {
+    list-style-type: none;
+    width: 150px;
+    float: left;
+}
+
+.tab {
+    font-family: sans-serif;
+    font-weight: bold;
+    padding: 10px;
+    border-top: 1px solid black;
+    border-left:  1px solid black;
+    border-bottom: 1px solid black;
+    border-right: none;
+    border-radius: 3% 0 0 3%;
+    padding: 30px 20px;
+}
+
+.tab:hover {
+    background: rgba(0, 0, 2, .3);
+}
+
+.tab:focus {
+    background: rgba(0, 0, 0, .45);
+    color: white;
+}
+
+/*----Buttons that will overlay the tab*/
+
+
+@media (max-width: 768px){
+  .tabList {
+    display: none;
+  }
+
+}
+
+@media (min-width: 769px){
+  .toolbar-toggle-button {
+    display: none;
+  }
+}
