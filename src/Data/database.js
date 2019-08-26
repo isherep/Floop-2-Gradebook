@@ -80,10 +80,25 @@ const getStudents = async () => {
     feedbackQuerySnapshot.forEach((conversationDocument) => {
       conversations[conversationDocument.id] = {
         id: conversationDocument.id,
-        feedback: conversationDocument.data().Comment_Preview
+        feedback: conversationDocument.data().Comment_Preview,
+        //now will add this feedback using this subission Id to the correct submission
+        submissionID: conversationDocument.data().Submission_ID
 
       }
+
+      const idsComments = Object.keys(conversationDocument.data().Submission_ID)
+      /*
+      idsComments.forEach((ownerId) => {
+        const student = students[ownerId];
+          student.submissions.push(conversations)
+        });
+        */
     });
+
+    console.log("Feedbacks snapshot", conversations)
+
+   
+
 
     submissionsSnapshot.forEach((submisionDocument) => {
       const submission = {
@@ -127,7 +142,7 @@ const getStudents = async () => {
 
 
       const ids = Object.keys(submisionDocument.data().Owner_IDs); 
-
+      //const idsComments = Object.keys(conversationDocument.data().Submission_ID)
       ids.forEach((ownerId) => {
         const student = students[ownerId];
           student.submissions.push(submission)
