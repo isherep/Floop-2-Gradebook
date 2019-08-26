@@ -1,4 +1,9 @@
 #Firebase tools
+/.Data/database.js
+/Data/database.js
+Database.js
+/.database.js
+
 /.vscode
 node_modules
 /coverage
