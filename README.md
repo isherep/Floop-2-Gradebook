@@ -8,4 +8,3 @@ The Gradebook allows tracking progress by assignment and by the metric. In the V
 
 In the View by metric, the teacher can track grades, engagement, and submissions for each assignment; that way track these metric per each assignment.
 
-![Floop Gradebook View By Student](https://github.com/isherep/floop-2-gradebook/blob/feedback-iryna/src/img/Screen%20Shot%202019-06-07%20at%2010.17.49%20PM%20(1).png)
